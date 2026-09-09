@@ -129,7 +129,7 @@
       "responsable": "JOHN COELLO",
       "ultimaCalibracion": "2026-03-03",
       "proximaCalibracion": "2027-03-03",
-      "estado": "disponible",
+      "estado": "prestado",
       "avisoEnviadoPara": null
     },
     {
@@ -254,6 +254,21 @@
     }
   ],
   "prestamos": [
+    {
+      "id": "P1788958076118",
+      "codigo": "MEG-001",
+      "solicitante": "JOSHUA CHOEZ",
+      "fechaPrestamo": "2026-09-09",
+      "fechaEsperada": "2026-09-09",
+      "estadoAlPrestar": "Bueno",
+      "notasAlPrestar": "Ninguna",
+      "fotoAlPrestar": null,
+      "fechaDevolucion": null,
+      "estadoAlDevolver": null,
+      "notasAlDevolver": "",
+      "fotoAlDevolver": null,
+      "status": "activo"
+    },
     {
       "id": "P1787172625290",
       "codigo": "AMP-001",
