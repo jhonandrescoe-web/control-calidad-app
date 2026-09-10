@@ -105,7 +105,7 @@
       "responsable": "JOHN COELLO",
       "ultimaCalibracion": "2025-04-12",
       "proximaCalibracion": "2026-10-16",
-      "estado": "prestado",
+      "estado": "disponible",
       "avisoEnviadoPara": null
     },
     {
@@ -323,11 +323,11 @@
       "estadoAlPrestar": "Bueno",
       "notasAlPrestar": "NINGUNA",
       "fotoAlPrestar": null,
-      "fechaDevolucion": null,
-      "estadoAlDevolver": null,
-      "notasAlDevolver": "",
+      "fechaDevolucion": "2026-09-09",
+      "estadoAlDevolver": "Bueno",
+      "notasAlDevolver": "ninguna",
       "fotoAlDevolver": null,
-      "status": "activo"
+      "status": "cerrado"
     },
     {
       "id": "P1785791771222",
