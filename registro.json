@@ -448,7 +448,7 @@
       "placa": "PFP4808",
       "marca": "",
       "modelo": "",
-      "estado": "disponible"
+      "estado": "en_uso"
     },
     {
       "placa": "PFJ5372",
@@ -458,6 +458,19 @@
     }
   ],
   "usosVehiculo": [
+    {
+      "id": "V1789046048365",
+      "placa": "PFP4808",
+      "nombre": "Geovanny barrezueta",
+      "departamento": "Calidad",
+      "fechaEntrega": "2026-09-10",
+      "observaciones": "ninguna",
+      "fotoSalida": null,
+      "fechaDevolucion": null,
+      "observacionesDevolucion": "",
+      "fotoEntrada": null,
+      "estatus": "activo"
+    },
     {
       "id": "V1787580677075",
       "placa": "PFJ5372",
