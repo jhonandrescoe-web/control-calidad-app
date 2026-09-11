@@ -129,7 +129,7 @@
       "responsable": "JOHN COELLO",
       "ultimaCalibracion": "2026-03-03",
       "proximaCalibracion": "2027-03-03",
-      "estado": "prestado",
+      "estado": "disponible",
       "avisoEnviadoPara": null
     },
     {
@@ -263,11 +263,11 @@
       "estadoAlPrestar": "Bueno",
       "notasAlPrestar": "Ninguna",
       "fotoAlPrestar": null,
-      "fechaDevolucion": null,
-      "estadoAlDevolver": null,
-      "notasAlDevolver": "",
+      "fechaDevolucion": "2026-09-11",
+      "estadoAlDevolver": "Bueno",
+      "notasAlDevolver": "el cable de poder lo entregan el lunes",
       "fotoAlDevolver": null,
-      "status": "activo"
+      "status": "cerrado"
     },
     {
       "id": "P1787172625290",
