@@ -2484,10 +2484,26 @@
         "Banco de condensadores"
       ],
       "observaciones": "Observaciones en protocolo",
-      "actualizadoEn": "2026-09-14T20:49:51.680Z"
+      "actualizadoEn": "2026-09-14T20:49:51.680Z",
+      "filtroActivo": "",
+      "tableroCompensacion": ""
     }
   ],
-  "proyectosAireacion": [],
+  "proyectosAireacion": [
+    {
+      "id": "PA1789419629670",
+      "contrato": "933,1",
+      "cliente": "IPSP",
+      "finca": "TAURA 1",
+      "proyecto": "AIRECION - TAURA 1",
+      "fechaFAT": "2026-09-14",
+      "fechaSAT": null,
+      "observaciones": "",
+      "tipoTablero": "TA",
+      "cantidadTableros": "20",
+      "actualizadoEn": "2026-09-14T21:00:29.670Z"
+    }
+  ],
   "celdas": [
     {
       "id": "CEL1787328306333",
