@@ -2471,7 +2471,7 @@
     },
     {
       "id": "PB1789415554832",
-      "contrato": "1168,2",
+      "contrato": "1168.2",
       "cliente": "LANEC",
       "finca": "SAN OLMEDO",
       "proyecto": "SAN OLMEDO FASE 2",
@@ -2484,7 +2484,7 @@
         "Banco de condensadores"
       ],
       "observaciones": "Observaciones en protocolo",
-      "actualizadoEn": "2026-09-14T19:52:34.832Z"
+      "actualizadoEn": "2026-09-14T20:49:51.680Z"
     }
   ],
   "proyectosAireacion": [],
