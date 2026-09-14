@@ -2502,6 +2502,19 @@
       "tipoTablero": "TA",
       "cantidadTableros": "20",
       "actualizadoEn": "2026-09-14T21:00:29.670Z"
+    },
+    {
+      "id": "PA1789421274731",
+      "contrato": "1320",
+      "cliente": "LANEC",
+      "finca": "SAN OLMEDO",
+      "proyecto": "SAN OLMEDO",
+      "fechaFAT": "2026-09-13",
+      "fechaSAT": null,
+      "observaciones": "NINGUNA",
+      "tipoTablero": "TA",
+      "cantidadTableros": "5",
+      "actualizadoEn": "2026-09-14T21:27:54.730Z"
     }
   ],
   "celdas": [
