@@ -2468,6 +2468,23 @@
       "contiene": [
         "Filtro activo"
       ]
+    },
+    {
+      "id": "PB1789415554832",
+      "contrato": "1168,2",
+      "cliente": "LANEC",
+      "finca": "SAN OLMEDO",
+      "proyecto": "SAN OLMEDO FASE 2",
+      "fechaFAT": "2026-09-14",
+      "fechaSAT": null,
+      "parametrosAS": "NO",
+      "garantiaVencimiento": "2027-10-14",
+      "numeroMotores": "2",
+      "contiene": [
+        "Banco de condensadores"
+      ],
+      "observaciones": "Observaciones en protocolo",
+      "actualizadoEn": "2026-09-14T19:52:34.832Z"
     }
   ],
   "proyectosAireacion": [],
