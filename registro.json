@@ -1121,6 +1121,27 @@
   ],
   "salidasHerramientas": [
     {
+      "id": "S1789487459767",
+      "numero": "SAL-GPS-007-2026",
+      "fecha": "2026-09-15",
+      "departamento": "CONTROL DE CALIDAD",
+      "generadoPor": "TITO CRUZ",
+      "proyecto": "MARAGRO",
+      "destino": "MARAGRO",
+      "motivo": "megado de cables",
+      "items": [
+        {
+          "cantidad": "1",
+          "material": "MEGGER-001",
+          "observacion": "equipo completo con sus cables"
+        }
+      ],
+      "fotos": [],
+      "fechaDevolucion": null,
+      "observacionesDevolucion": "",
+      "estatus": "activo"
+    },
+    {
       "id": "S1787584623727",
       "numero": "SAL-GPS-006-2026",
       "fecha": "2026-08-24",
