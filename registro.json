@@ -2871,24 +2871,5 @@
       "actualizadoEn": "2026-08-21T16:37:05.461Z"
     }
   ],
-  "papelera": [
-    {
-      "id": "TR1787886288981g61iu",
-      "tipo": "usoVehiculo",
-      "datos": {
-        "id": "V1787886261021",
-        "placa": "PFJ5372",
-        "nombre": "jcoello",
-        "departamento": "cca",
-        "fechaEntrega": "2026-08-28",
-        "observaciones": "",
-        "fotoSalida": null,
-        "fechaDevolucion": null,
-        "observacionesDevolucion": "",
-        "fotoEntrada": null,
-        "estatus": "activo"
-      },
-      "eliminadoEn": "2026-08-28T03:04:48.981Z"
-    }
-  ]
+  "papelera": []
 }
