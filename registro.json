@@ -2567,6 +2567,19 @@
       "tipoTablero": "TCP",
       "cantidadTableros": "31",
       "actualizadoEn": "2026-09-15T13:28:25.059Z"
+    },
+    {
+      "id": "PA1789478989361",
+      "contrato": "933,1",
+      "cliente": "IPSP",
+      "finca": "TAURA 2",
+      "proyecto": "AIREACION - TAURA 2",
+      "fechaFAT": "2026-10-21",
+      "fechaSAT": null,
+      "observaciones": "",
+      "tipoTablero": "TA",
+      "cantidadTableros": "52",
+      "actualizadoEn": "2026-09-15T13:29:49.361Z"
     }
   ],
   "celdas": [
