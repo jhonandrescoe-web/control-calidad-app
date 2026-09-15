@@ -2515,6 +2515,19 @@
       "tipoTablero": "TA",
       "cantidadTableros": "5",
       "actualizadoEn": "2026-09-14T21:27:54.730Z"
+    },
+    {
+      "id": "PA1789478715306",
+      "contrato": "763",
+      "cliente": "GRUPO BRITO",
+      "finca": "CAMBRICA",
+      "proyecto": "AIREACION - CAMBRICA",
+      "fechaFAT": "2026-04-21",
+      "fechaSAT": null,
+      "observaciones": "",
+      "tipoTablero": "TA",
+      "cantidadTableros": "122",
+      "actualizadoEn": "2026-09-15T13:25:15.305Z"
     }
   ],
   "celdas": [
