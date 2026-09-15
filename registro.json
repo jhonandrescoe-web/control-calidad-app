@@ -129,7 +129,7 @@
       "responsable": "JOHN COELLO",
       "ultimaCalibracion": "2026-03-03",
       "proximaCalibracion": "2027-03-03",
-      "estado": "disponible",
+      "estado": "prestado",
       "avisoEnviadoPara": null
     },
     {
@@ -254,6 +254,21 @@
     }
   ],
   "prestamos": [
+    {
+      "id": "P1789486845783",
+      "codigo": "MEG-001",
+      "solicitante": "TITO CRUZ-OPERACIONES",
+      "fechaPrestamo": "2026-09-15",
+      "fechaEsperada": "2026-09-18",
+      "estadoAlPrestar": "Bueno",
+      "notasAlPrestar": "NINGUNA",
+      "fotoAlPrestar": null,
+      "fechaDevolucion": null,
+      "estadoAlDevolver": null,
+      "notasAlDevolver": "",
+      "fotoAlDevolver": null,
+      "status": "activo"
+    },
     {
       "id": "P1788958076118",
       "codigo": "MEG-001",
