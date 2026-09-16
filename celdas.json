@@ -1,3 +1,224 @@
 {
-  "celdas": []
+  "celdas": [
+    {
+      "id": "CEL1787328306333",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION",
+      "tipoCelda": "QM",
+      "numeroSerie": "EA-2023-W12-SM6-0206",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:05:06.333Z"
+    },
+    {
+      "id": "CEL1787328424784",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION  7",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-S0K10",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:09:03.343Z"
+    },
+    {
+      "id": "CEL1787328526599",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION 6",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-S0K9",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:08:46.599Z"
+    },
+    {
+      "id": "CEL1787328636146",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION 5",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK11",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:10:36.146Z"
+    },
+    {
+      "id": "CEL1787328731118",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION 4",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK13",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:12:11.118Z"
+    },
+    {
+      "id": "CEL1787328826489",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION 3",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK14",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:13:46.489Z"
+    },
+    {
+      "id": "CEL1787328931832",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION 2",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK8",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:15:31.832Z"
+    },
+    {
+      "id": "CEL1787329030344",
+      "proyecto": "IPSP-TAURA D",
+      "finca": "GENERACION 1",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK12",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:17:10.344Z"
+    },
+    {
+      "id": "CEL1787329111840",
+      "proyecto": "IPSP-TAURA 1",
+      "finca": "TAURA 1-ALIMENTADOR",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK1",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:18:31.840Z"
+    },
+    {
+      "id": "CEL1787329219760",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK4",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:20:19.760Z"
+    },
+    {
+      "id": "CEL1787329297531",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK6",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:21:37.531Z"
+    },
+    {
+      "id": "CEL1787329357019",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2026-1042801189-SOK5",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:22:37.019Z"
+    },
+    {
+      "id": "CEL1787329412607",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2025-1042801151-SOK6",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:23:32.606Z"
+    },
+    {
+      "id": "CEL1787329468817",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2025-1042801151-SOK3",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:24:28.817Z"
+    },
+    {
+      "id": "CEL1787329577136",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "NSM 2",
+      "numeroSerie": "EA-2024-W28-SM6-0512",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-16",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:26:17.136Z"
+    },
+    {
+      "id": "CEL1787329651817",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "NSM 2",
+      "numeroSerie": "EA-2024-W28-SM6-0512",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:27:31.817Z"
+    },
+    {
+      "id": "CEL1787329718800",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2024-1042800676-S2K1",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:28:38.800Z"
+    },
+    {
+      "id": "CEL1787330079950",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "DM1-A",
+      "numeroSerie": "EA-2024-1042800676-S2K2",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:34:39.950Z"
+    },
+    {
+      "id": "CEL1787330181354",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "QM",
+      "numeroSerie": "EA-2022-W47-SM6-1012",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:36:21.354Z"
+    },
+    {
+      "id": "CEL1787330225461",
+      "proyecto": "",
+      "finca": "",
+      "tipoCelda": "QM",
+      "numeroSerie": "EA-2023-W10-SM6-0175",
+      "fechaRevision": "2026-08-19",
+      "garantiaVencimiento": "2027-08-19",
+      "fotos": [],
+      "actualizadoEn": "2026-08-21T16:37:05.461Z"
+    }
+  ]
 }
