@@ -1,0 +1,245 @@
+{
+  "herramientas": [
+    {
+      "material": "CAJA DE HERRAMIENTAS",
+      "marca": "TRUPPER",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_0"
+    },
+    {
+      "material": "LLAVE ALLEN (PRETFUL) JUEGO 13PZ PULG",
+      "marca": "PRETFUL",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_1"
+    },
+    {
+      "material": "LLAVE ALLEN (TRUPPER) JUEGO 10 PZ MM",
+      "marca": "TRUPPER",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_2"
+    },
+    {
+      "material": "LLAVES ALLEN JUEGO 8PZ (TRUPPER) MANGO HEXAGONAL",
+      "marca": "TRUPPER",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_3"
+    },
+    {
+      "material": "NIVEL DE ALUMINIO 14PULG (TRUPPER)",
+      "marca": "TRUPPER",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_4"
+    },
+    {
+      "material": "FLEXOMETRO (TRUPPER) 8MTRS",
+      "marca": "TRUPPER",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_5"
+    },
+    {
+      "material": "ESTILETE (PRETFUL) 6PULG",
+      "marca": "PRETFUL",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_6"
+    },
+    {
+      "material": "BROCHA (PRETFUL)",
+      "marca": "PRETFUL",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_7"
+    },
+    {
+      "material": "CAMARA TERMICA (FLUKE)",
+      "marca": "FLUKE",
+      "fechaEntrega": "2025-09-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_8"
+    },
+    {
+      "material": "MACHINADORA UNIVERSAL TERMINAL PUNTERA 10-24AWG",
+      "marca": "CAMSCO",
+      "fechaEntrega": "2025-09-03",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_9"
+    },
+    {
+      "material": "DESTORNILLADOR PLANO BORNERA  1/8PULG PRO GABINETE (STANLEY)",
+      "marca": "STANLEY",
+      "fechaEntrega": "2025-09-14",
+      "estado": "Herramienta nueva",
+      "cantidad": "2",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_10"
+    },
+    {
+      "material": "ALICATE CORTE DIAGONAL 8PULG MANGO AISLADO  STANLEY",
+      "marca": "STANLEY",
+      "fechaEntrega": "2025-09-14",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_11"
+    },
+    {
+      "material": "ALICATE UNIVERSAL",
+      "marca": "STANLEY",
+      "fechaEntrega": "2026-09-14",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_12"
+    },
+    {
+      "material": "ESTILETE",
+      "marca": "STANLEY",
+      "fechaEntrega": "2026-09-14",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_13"
+    },
+    {
+      "material": "DESTORNILLADOR ESTRELLA",
+      "marca": "INGCO",
+      "fechaEntrega": "2023-01-01",
+      "estado": "Herramienta en buen estado",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_14"
+    },
+    {
+      "material": "JUEGO DE PUNTAS PARA DESARMADOR PH3 4PULG DE LARGO 5PZ",
+      "marca": "TRUPPER",
+      "fechaEntrega": "2026-06-18",
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_15"
+    },
+    {
+      "material": "PINZA PONCHADORA DE TRINQUETE 10AWG-22AWG",
+      "marca": "KLEINTOOLS",
+      "fechaEntrega": "2023-01-01",
+      "estado": "Herramienta en buen estado",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_16"
+    },
+    {
+      "material": "PELADOR DE CABLE",
+      "marca": "STANLEY",
+      "fechaEntrega": "2023-01-01",
+      "estado": "Herramienta en buen estado",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_17"
+    },
+    {
+      "material": "JUEGO DE DADOS MAS RACHET10MM-21MM",
+      "marca": "TOTAL",
+      "fechaEntrega": "2023-01-01",
+      "estado": "Herramienta en buen estado",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_18"
+    },
+    {
+      "material": "HERRAMIENTA MULTIPROPOSITO PONCHADO Y CORTE 1005",
+      "marca": "KLEINTOOLS",
+      "fechaEntrega": "2023-01-01",
+      "estado": "Herramienta en buen estado",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_19"
+    },
+    {
+      "material": "PINZA PONCHADORA DE TRINQUETE 10AWG-22AWG",
+      "marca": "CAMSCO",
+      "fechaEntrega": "2023-01-01",
+      "estado": "Herramienta en buen estado",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_20"
+    },
+    {
+      "material": "TORQUIMETRO DESTORNILLADOR DIGITAL 1.5-88.5IN LB",
+      "marca": "ANPUOS",
+      "fechaEntrega": null,
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_21"
+    },
+    {
+      "material": "TORQUIMETRO DESTORNILLADOR DIGITAL 1.5-88.5IN LB",
+      "marca": "ETOLAAB",
+      "fechaEntrega": null,
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_22"
+    },
+    {
+      "material": "DETECTOR DE FASE",
+      "marca": "FLUKE",
+      "fechaEntrega": null,
+      "estado": "Herramienta nueva",
+      "cantidad": "1",
+      "responsable": "John Coello",
+      "observaciones": "",
+      "id": "H_BASE_23"
+    }
+  ],
+  "salidasHerramientas": []
+}
