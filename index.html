@@ -463,8 +463,7 @@
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
           <input class="search-box" id="searchHist" placeholder="Buscar por código o solicitante..." oninput="renderHistorial()">
-          <input type="date" id="filtroFechaDesdeHist" title="Desde" oninput="renderHistorial()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
-          <input type="date" id="filtroFechaHastaHist" title="Hasta" oninput="renderHistorial()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
+          <input type="date" id="filtroFechaDesdeHist" title="Filtrar por fecha" oninput="renderHistorial()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
           <button class="btn outline" onclick="exportarHistorialCSV()">⬇ Exportar historial (CSV)</button>
           <button class="btn outline admin-only" style="color:var(--alert);border-color:var(--alert);" onclick="vaciarHistorialPrestamos()">🗑 Vaciar historial</button>
         </div>
@@ -501,8 +500,7 @@
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
           <input class="search-box" id="searchCalib" placeholder="Buscar por código o tipo..." oninput="renderCalibraciones()">
-          <input type="date" id="filtroFechaDesdeCalib" title="Desde (fecha de calibración)" oninput="renderCalibraciones()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
-          <input type="date" id="filtroFechaHastaCalib" title="Hasta (fecha de calibración)" oninput="renderCalibraciones()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
+          <input type="date" id="filtroFechaDesdeCalib" title="Filtrar por fecha de calibración" oninput="renderCalibraciones()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
           <button class="btn outline" onclick="cargarFechasCalibracionExcel()">📥 Cargar fechas del Excel</button>
           <button class="btn outline" onclick="exportarCalibracionesCSV()">⬇ Exportar (CSV)</button>
           <button class="btn outline admin-only" style="color:var(--alert);border-color:var(--alert);" onclick="vaciarHistorialCalibraciones()">🗑 Vaciar historial</button>
@@ -531,8 +529,7 @@
           <div class="sub">Lo que sigue activo (sin devolver) aparece primero.</div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-          <input type="date" id="filtroFechaDesdeVeh" title="Desde" oninput="renderVehiculos()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
-          <input type="date" id="filtroFechaHastaVeh" title="Hasta" oninput="renderVehiculos()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
+          <input type="date" id="filtroFechaDesdeVeh" title="Filtrar por fecha" oninput="renderVehiculos()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
           <button class="btn outline" onclick="exportarVehiculosCSV()">⬇ Exportar bitácora (CSV)</button>
           <button class="btn outline admin-only" style="color:var(--alert);border-color:var(--alert);" onclick="vaciarHistorialVehiculos()">🗑 Vaciar historial</button>
         </div>
@@ -549,8 +546,7 @@
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
           <button class="btn amber" onclick="abrirModalSalidaHerramientas()">🧾 Generar acta de salida</button>
-          <input type="date" id="filtroFechaDesdeHerr" title="Desde" oninput="renderHerramientas()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
-          <input type="date" id="filtroFechaHastaHerr" title="Hasta" oninput="renderHerramientas()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
+          <input type="date" id="filtroFechaDesdeHerr" title="Filtrar por fecha" oninput="renderHerramientas()" style="padding:9px 10px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
           <button class="btn outline" onclick="exportarSalidasHerramientasCSV()">⬇ Exportar historial (CSV)</button>
           <button class="btn outline admin-only" style="color:var(--alert);border-color:var(--alert);" onclick="vaciarHistorialSalidasHerramientas()">🗑 Vaciar historial</button>
         </div>
@@ -730,14 +726,6 @@
       <label>Observaciones</label>
       <textarea id="pNotas" placeholder="Detalles del estado, accesorios entregados, etc."></textarea>
     </div>
-    <div class="field">
-      <label>Foto al prestar</label>
-      <div class="photo-drop" onclick="document.getElementById('pFoto').click()">
-        <div class="hint">Toca para tomar / subir foto</div>
-        <img id="pFotoPreview" style="display:none">
-      </div>
-      <input type="file" id="pFoto" accept="image/*" capture="environment" style="display:none" onchange="handleFoto(event,'pFotoPreview')">
-    </div>
     <button class="btn amber" style="width:100%" onclick="confirmarPrestamo()">Registrar préstamo</button>
   </div>
 </div>
@@ -774,14 +762,6 @@
       <label>Observaciones al prestar</label>
       <textarea id="peNotasAlPrestar" placeholder="Detalles del estado, accesorios entregados, etc."></textarea>
     </div>
-    <div class="field">
-      <label>Foto al prestar</label>
-      <div class="photo-drop" onclick="document.getElementById('peFotoPrestarInput').click()">
-        <div class="hint">Toca para tomar / subir / cambiar la foto</div>
-        <img id="peFotoPrestarPreview" style="display:none">
-      </div>
-      <input type="file" id="peFotoPrestarInput" accept="image/*" capture="environment" style="display:none" onchange="handleFotoEditarPrestamo(event,'prestar')">
-    </div>
     <hr style="border:none;border-top:1px solid var(--line);margin:18px 0;">
     <div class="field">
       <label>Estado del equipo al devolver</label>
@@ -796,14 +776,6 @@
       <label>Observaciones al devolver</label>
       <textarea id="peNotasAlDevolver" placeholder="Novedades encontradas al recibir el equipo"></textarea>
     </div>
-    <div class="field">
-      <label>Foto al devolver</label>
-      <div class="photo-drop" onclick="document.getElementById('peFotoDevolverInput').click()">
-        <div class="hint">Toca para tomar / subir / cambiar la foto</div>
-        <img id="peFotoDevolverPreview" style="display:none">
-      </div>
-      <input type="file" id="peFotoDevolverInput" accept="image/*" capture="environment" style="display:none" onchange="handleFotoEditarPrestamo(event,'devolver')">
-    </div>
     <button class="btn amber" style="width:100%" onclick="confirmarEditarPrestamo()">💾 Guardar cambios</button>
   </div>
 </div>
@@ -814,7 +786,6 @@
     <button class="modal-close" onclick="cerrarModales()">&times;</button>
     <h3>Devolver equipo</h3>
     <div class="info-line" id="devolverInfo"></div>
-    <div class="compare" id="compareFotos"></div>
     <div class="field">
       <label>Fecha de devolución</label>
       <input type="date" id="dFecha">
@@ -830,14 +801,6 @@
     <div class="field">
       <label>Observaciones</label>
       <textarea id="dNotas" placeholder="Novedades encontradas al recibir el equipo"></textarea>
-    </div>
-    <div class="field">
-      <label>Foto al devolver</label>
-      <div class="photo-drop" onclick="document.getElementById('dFoto').click()">
-        <div class="hint">Toca para tomar / subir foto</div>
-        <img id="dFotoPreview" style="display:none">
-      </div>
-      <input type="file" id="dFoto" accept="image/*" capture="environment" style="display:none" onchange="handleFoto(event,'dFotoPreview')">
     </div>
     <button class="btn" style="width:100%" onclick="confirmarDevolucion()">Registrar devolución</button>
   </div>
@@ -1302,6 +1265,7 @@
     <button class="modal-close" onclick="cerrarModales()">&times;</button>
     <h3>Conectar con GitHub (equipo compartido)</h3>
     <p class="info-line">Todos los que usen estos mismos datos van a ver los préstamos, devoluciones y calibraciones sincronizados desde tu repositorio privado. Funciona igual en computadora, iPhone y Android.</p>
+    <p class="info-line" style="text-align:left;">Tus datos se guardan divididos en varios archivos pequeños dentro del repositorio (equipos, herramientas, vehículos, etc.), para nunca toparte con el límite de 1MB de GitHub por archivo.</p>
     <div class="field">
       <label>Usuario u organización de GitHub</label>
       <input type="text" id="ghOwner" placeholder="ej: johncoello">
@@ -1310,15 +1274,9 @@
       <label>Nombre del repositorio</label>
       <input type="text" id="ghRepo" placeholder="ej: registro-prestamo-equipos">
     </div>
-    <div class="row2">
-      <div class="field">
-        <label>Rama</label>
-        <input type="text" id="ghBranch" placeholder="main">
-      </div>
-      <div class="field">
-        <label>Archivo de datos</label>
-        <input type="text" id="ghPath" placeholder="registro.json">
-      </div>
+    <div class="field">
+      <label>Rama</label>
+      <input type="text" id="ghBranch" placeholder="main">
     </div>
     <div class="field">
       <label>Token de acceso (fine-grained, permiso "Contents: Read and write")</label>
@@ -1342,7 +1300,21 @@
       ⚠ ¿El archivo se dañó? Toca aquí para recuperar una versión anterior ▾
     </p>
     <div id="bloqueRecuperar" style="display:none;">
-      <p class="info-line" style="text-align:left;">Pega el código corto del guardado que sí funciona bien (lo ves en GitHub, en la lista de "Commits" de tu archivo — ej. <b>a6369d7</b>). Esto reemplaza el archivo actual por esa versión, sin que tengas que copiar ni pegar nada del contenido.</p>
+      <p class="info-line" style="text-align:left;">Pega el código corto del guardado que sí funciona bien (lo ves en GitHub, en la lista de "Commits" de ese archivo — ej. <b>a6369d7</b>). Esto reemplaza ese archivo por esa versión, sin que tengas que copiar ni pegar nada del contenido.</p>
+      <div class="field">
+        <label>¿Cuál archivo se dañó?</label>
+        <select id="ghArchivoRecuperar">
+          <option value="equipos.json">equipos.json (equipos y calibraciones)</option>
+          <option value="prestamos.json">prestamos.json (historial de préstamos)</option>
+          <option value="vehiculos.json">vehiculos.json (vehículos y bitácora)</option>
+          <option value="herramientas.json">herramientas.json (herramientas y actas)</option>
+          <option value="proyectos.json">proyectos.json (bombeo y aireación)</option>
+          <option value="celdas.json">celdas.json</option>
+          <option value="papelera.json">papelera.json</option>
+          <option value="config.json">config.json (avisos)</option>
+          <option value="registro.json">registro.json (archivo antiguo, antes de dividirlo)</option>
+        </select>
+      </div>
       <div class="field">
         <label>Código del commit bueno (SHA)</label>
         <input type="text" id="ghCommitSha" placeholder="ej: a6369d7">
@@ -1647,6 +1619,52 @@ function datosVacios(){
   };
 }
 
+/* ================= ARCHIVOS DIVIDIDOS EN GITHUB (evita el límite de 1MB) ================= */
+const GITHUB_ARCHIVOS = {
+  'equipos.json': ['equipos','calibraciones'],
+  'prestamos.json': ['prestamos'],
+  'vehiculos.json': ['vehiculos','usosVehiculo'],
+  'herramientas.json': ['herramientas','salidasHerramientas'],
+  'proyectos.json': ['proyectosBombeo','proyectosAireacion'],
+  'celdas.json': ['celdas'],
+  'papelera.json': ['papelera'],
+  'config.json': ['avisos']
+};
+function partirDataPorArchivo(data, archivo){
+  const claves = GITHUB_ARCHIVOS[archivo];
+  const pedazo = {};
+  claves.forEach(k => { pedazo[k] = data[k]; });
+  return pedazo;
+}
+function unirPedazosEnData(pedazos){
+  const base = datosVacios();
+  Object.keys(GITHUB_ARCHIVOS).forEach(archivo=>{
+    const contenido = pedazos[archivo];
+    if(contenido){
+      GITHUB_ARCHIVOS[archivo].forEach(clave=>{
+        if(contenido[clave] !== undefined) base[clave] = contenido[clave];
+      });
+    }
+  });
+  return base;
+}
+async function fetchArchivoGithub(owner, repo, branch, path, token, ref){
+  try{
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(ref || branch)}`, {
+      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
+    });
+    if(res.status === 404) return { ok:false, notFound:true };
+    if(!res.ok) return { ok:false, error: `código ${res.status}` };
+    const json = await res.json();
+    let contenido;
+    try{ contenido = JSON.parse(b64DecodeUnicode(json.content)); }
+    catch(e){ return { ok:false, invalidJson:true }; }
+    return { ok:true, contenido, sha: json.sha };
+  }catch(err){
+    return { ok:false, error: 'sin conexión' };
+  }
+}
+
 /* --- IndexedDB: recordar el archivo elegido entre sesiones --- */
 function idbOpen(){
   return new Promise((resolve, reject)=>{
@@ -1937,48 +1955,28 @@ async function iniciarApp(){
   document.getElementById('ghOwner').value = 'jhonandrescoe-web';
   document.getElementById('ghRepo').value = 'registro-prestamo-equipos';
   document.getElementById('ghBranch').value = 'main';
-  document.getElementById('ghPath').value = 'registro.json';
   document.getElementById('ghToken').value = '';
   document.getElementById('modalGithub').classList.add('active');
 }
 async function reconectarGithubSilencioso(cfg){
-  githubCfg = { ...cfg, sha: null };
-  let res;
   try{
-    res = await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(cfg.path)}?ref=${encodeURIComponent(cfg.branch)}`, {
-      headers: { 'Authorization': `Bearer ${cfg.token}`, 'Accept': 'application/vnd.github+json' }
-    });
+    const r = await conectarYCargarDesdeGithub(cfg.owner, cfg.repo, cfg.branch, cfg.token);
+    if(!r.ok){
+      mostrarToast(r.mensaje + ' Conéctate manualmente desde "🔄 Cambiar archivo" (solo admin).');
+      githubMode = false;
+      usarModoCompatibilidad();
+      return false;
+    }
+    cerrarGate(`${cfg.owner}/${cfg.repo}`);
+    renderDashboard();
+    mostrarToast(`☁ Conectado automáticamente a ${cfg.owner}/${cfg.repo}`);
+    return true;
   }catch(err){
     mostrarToast('⚠ Sin conexión a internet ahora mismo. Entra sin sincronizar y se reintenta la próxima vez.');
     githubMode = false;
     usarModoCompatibilidad();
     return false;
   }
-  if(!res.ok){
-    mostrarToast('⚠ No se pudo reconectar solo a GitHub (revisa el token). Conéctate manualmente desde "🔄 Cambiar archivo".');
-    githubMode = false;
-    usarModoCompatibilidad();
-    return false;
-  }
-  const json = await res.json();
-  githubCfg.sha = json.sha;
-  let datosNuevos;
-  try{
-    datosNuevos = JSON.parse(b64DecodeUnicode(json.content));
-  }catch(e){
-    mostrarToast('⚠ El archivo en GitHub no tiene un formato válido. Entra a "🔄 Cambiar archivo → Conectar con GitHub" para usar la opción de recuperar una versión anterior.');
-    githubMode = false;
-    usarModoCompatibilidad();
-    return false;
-  }
-  DATA = datosNuevos;
-  githubMode = true;
-  fileMode = false;
-  agregarEquiposFaltantes();
-  cerrarGate(`${cfg.owner}/${cfg.repo}`);
-  renderDashboard();
-  mostrarToast(`☁ Conectado automáticamente a ${cfg.owner}/${cfg.repo}`);
-  return true;
 }
 
 async function escribirArchivo(){
@@ -2010,7 +2008,6 @@ function abrirConfigGithub(){
   document.getElementById('ghOwner').value = cfg.owner || '';
   document.getElementById('ghRepo').value = cfg.repo || '';
   document.getElementById('ghBranch').value = cfg.branch || 'main';
-  document.getElementById('ghPath').value = cfg.path || 'registro.json';
   document.getElementById('ghToken').value = cfg.token || '';
   document.getElementById('modalGithub').classList.add('active');
 }
@@ -2018,52 +2015,41 @@ async function restaurarVersionAnterior(){
   const owner = document.getElementById('ghOwner').value.trim();
   const repo = document.getElementById('ghRepo').value.trim();
   const branch = document.getElementById('ghBranch').value.trim() || 'main';
-  const path = document.getElementById('ghPath').value.trim() || 'registro.json';
   const token = document.getElementById('ghToken').value.trim();
+  const archivoSel = document.getElementById('ghArchivoRecuperar').value;
   const sha = document.getElementById('ghCommitSha').value.trim();
   if(!owner || !repo || !token){ mostrarToast('⚠ Completa usuario, repositorio y token primero.'); return; }
   if(!sha){ mostrarToast('⚠ Pega el código (SHA) del guardado que quieres recuperar.'); return; }
-  if(!confirm(`¿Vas a reemplazar el archivo actual por la versión del commit "${sha}"? Lo que haya guardado ahora mismo se va a perder (pero queda en el historial de GitHub, así que no es definitivo).`)) return;
+  if(!confirm(`¿Vas a restaurar "${archivoSel}" con la versión del commit "${sha}"? Puedes intentar con otro código si esta versión tampoco sirve.`)) return;
   try{
     mostrarToast('⏳ Buscando esa versión...');
-    const resVieja = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${sha}`, {
-      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
-    });
-    if(!resVieja.ok){
-      mostrarToast(`⚠ No se encontró esa versión (código ${resVieja.status}). Revisa que el código esté bien copiado.`);
+    const rVieja = await fetchArchivoGithub(owner, repo, branch, archivoSel, token, sha);
+    if(!rVieja.ok){
+      mostrarToast(rVieja.notFound ? '⚠ No se encontró ese archivo en ese commit. Revisa el código.' : '⚠ Esa versión tampoco se pudo leer. Prueba con un código de commit distinto.');
       return;
     }
-    const jsonVieja = await resVieja.json();
-    let datosRecuperados;
-    try{ datosRecuperados = JSON.parse(b64DecodeUnicode(jsonVieja.content)); }
-    catch(e){ mostrarToast('⚠ Esa versión tampoco tiene un formato JSON válido. Prueba con un código de commit más antiguo.'); return; }
 
-    const resActual = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branch)}`, {
-      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
-    });
-    const shaActual = resActual.ok ? (await resActual.json()).sha : undefined;
-
-    const body = {
-      message: `Restaurado desde el commit ${sha} (recuperación de archivo dañado)`,
-      content: b64EncodeUnicode(JSON.stringify(datosRecuperados, null, 2)),
-      branch
-    };
-    if(shaActual) body.sha = shaActual;
-    const resGuardar = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`, {
-      method: 'PUT',
-      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    if(!resGuardar.ok){
-      mostrarToast(`⚠ Encontré la versión buena, pero no se pudo guardar de vuelta (código ${resGuardar.status}). Revisa el permiso "Contents: Read and write" del token.`);
-      return;
+    if(archivoSel === 'registro.json'){
+      DATA = rVieja.contenido;
+    } else {
+      const archivos = Object.keys(GITHUB_ARCHIVOS);
+      const resultados = {};
+      for(const archivo of archivos){
+        if(archivo === archivoSel){ resultados[archivo] = rVieja.contenido; continue; }
+        const r = await fetchArchivoGithub(owner, repo, branch, archivo, token);
+        resultados[archivo] = r.ok ? r.contenido : null;
+      }
+      DATA = unirPedazosEnData(resultados);
     }
-    DATA = datosRecuperados;
-    githubCfg = { owner, repo, branch, path, token, sha: (await resGuardar.json()).content.sha };
     githubMode = true;
     fileMode = false;
     agregarEquiposFaltantes();
-    lsSet(GITHUB_CFG_KEY, JSON.stringify(githubCfg));
+    githubCfg = { owner, repo, branch, token, shas: {} };
+    const guardadoOk = await escribirEnGithub(`Restaurado "${archivoSel}" desde el commit ${sha}`);
+    if(!guardadoOk){
+      mostrarToast('⚠ Se encontró la versión buena, pero no se pudo guardar de vuelta. Revisa el permiso "Contents: Read and write" del token.');
+      return;
+    }
     cerrarModales();
     cerrarGate(`GitHub: ${owner}/${repo}`);
     renderDashboard();
@@ -2076,12 +2062,11 @@ function generarLinkEquipo(){
   const owner = document.getElementById('ghOwner').value.trim();
   const repo = document.getElementById('ghRepo').value.trim();
   const branch = document.getElementById('ghBranch').value.trim() || 'main';
-  const path = document.getElementById('ghPath').value.trim() || 'registro.json';
   const token = document.getElementById('ghToken').value.trim();
   if(!owner || !repo || !token){ mostrarToast('⚠ Completa usuario, repositorio y token antes de generar el link.'); return; }
   try{
     const base = window.location.origin + window.location.pathname;
-    const cfg = { owner, repo, branch, path, token };
+    const cfg = { owner, repo, branch, token };
     const paquete = encodeURIComponent(b64EncodeUnicode(JSON.stringify(cfg)));
     const link = `${base}?setup=${paquete}`;
     const out = document.getElementById('linkEquipoOutput');
@@ -2120,45 +2105,65 @@ function procesarLinkMagico(){
     window.history.replaceState({}, document.title, urlLimpia);
   }
 }
+async function conectarYCargarDesdeGithub(owner, repo, branch, token){
+  githubCfg = { owner, repo, branch, token, shas: {} };
+  const archivos = Object.keys(GITHUB_ARCHIVOS);
+  const resultados = {};
+  let algunoInvalido = null;
+  let algunoError = null;
+  for(const archivo of archivos){
+    const r = await fetchArchivoGithub(owner, repo, branch, archivo, token);
+    if(r.ok){
+      resultados[archivo] = r.contenido;
+      githubCfg.shas[archivo] = r.sha;
+    } else if(r.notFound){
+      resultados[archivo] = null;
+      githubCfg.shas[archivo] = null;
+    } else if(r.invalidJson){
+      algunoInvalido = archivo;
+    } else {
+      algunoError = `${archivo} (${r.error})`;
+    }
+  }
+  if(algunoError) return { ok:false, mensaje: `⚠ No se pudo leer "${algunoError}" en ${owner}/${repo}. Revisa el token y el repositorio.` };
+  if(algunoInvalido) return { ok:false, mensaje: `⚠ El archivo "${algunoInvalido}" en ${owner}/${repo} no tiene un formato válido. Usa "Recuperar una versión anterior" eligiendo ese archivo.` };
+
+  const todosVacios = archivos.every(a => resultados[a] === null);
+  let avisoExtra = '';
+  if(todosVacios){
+    const viejo = await fetchArchivoGithub(owner, repo, branch, 'registro.json', token);
+    if(viejo.ok){
+      DATA = viejo.contenido;
+      avisoExtra = ' (se migró automáticamente tu archivo anterior "registro.json" al nuevo formato dividido en varios archivos, para evitar el límite de 1MB)';
+    } else {
+      DATA = datosVacios();
+    }
+  } else {
+    DATA = unirPedazosEnData(resultados);
+  }
+  githubMode = true;
+  fileMode = false;
+  agregarEquiposFaltantes();
+  if(todosVacios){
+    const guardadoOk = await escribirEnGithub('Sincronización inicial (formato dividido en varios archivos)');
+    if(!guardadoOk) return { ok:false, mensaje: '⚠ Se leyeron los datos pero no se pudieron guardar en el formato nuevo. Revisa el permiso "Contents: Read and write" del token.' };
+  }
+  lsSet(GITHUB_CFG_KEY, JSON.stringify(githubCfg));
+  return { ok:true, mensaje: `✔ Conectado con GitHub — datos compartidos con tu equipo${avisoExtra}` };
+}
 async function conectarGithub(){
   const owner = document.getElementById('ghOwner').value.trim();
   const repo = document.getElementById('ghRepo').value.trim();
   const branch = document.getElementById('ghBranch').value.trim() || 'main';
-  const path = document.getElementById('ghPath').value.trim() || 'registro.json';
   const token = document.getElementById('ghToken').value.trim();
   if(!owner || !repo || !token){ mostrarToast('⚠ Completa usuario, repositorio y token.'); return; }
-  githubCfg = { owner, repo, branch, path, token, sha: null };
   try{
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branch)}`, {
-      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
-    });
-    if(res.status === 404){
-      DATA = datosVacios();
-      githubMode = true;
-      fileMode = false;
-      const ok = await escribirEnGithub('Primer registro de la app');
-      if(!ok){ githubMode = false; mostrarToast('⚠ No se pudo crear el archivo en GitHub. Revisa el permiso "Contents: Read and write" del token.'); return; }
-    } else if(res.ok){
-      const json = await res.json();
-      let nuevo;
-      try{ nuevo = JSON.parse(b64DecodeUnicode(json.content)); }catch(e){ mostrarToast(`⚠ El archivo "${path}" en ${owner}/${repo} no tiene un formato JSON válido. Revisa que el repositorio sea el correcto.`); return; }
-      githubCfg.sha = json.sha;
-      DATA = nuevo;
-      githubMode = true;
-      fileMode = false;
-    } else if(res.status === 401 || res.status === 403){
-      mostrarToast('⚠ Token inválido o sin permisos suficientes sobre ese repositorio.');
-      return;
-    } else {
-      mostrarToast('⚠ No se pudo conectar con GitHub (código ' + res.status + ').');
-      return;
-    }
-    agregarEquiposFaltantes();
-    lsSet(GITHUB_CFG_KEY, JSON.stringify(githubCfg));
+    const r = await conectarYCargarDesdeGithub(owner, repo, branch, token);
+    if(!r.ok){ mostrarToast(r.mensaje); return; }
     cerrarModales();
     cerrarGate(`GitHub: ${owner}/${repo}`);
     renderDashboard();
-    mostrarToast('✔ Conectado con GitHub — datos compartidos con tu equipo');
+    mostrarToast(r.mensaje);
   }catch(err){
     mostrarToast('⚠ No se pudo conectar con GitHub. Revisa tu internet y los datos ingresados.');
   }
@@ -2166,37 +2171,42 @@ async function conectarGithub(){
 async function escribirEnGithub(mensaje){
   if(!githubCfg) return false;
   try{
-    const contenido = JSON.stringify(DATA, null, 2);
-    const tamanoBytes = new Blob([contenido]).size;
-    if(tamanoBytes > 900000){
-      mostrarToast('⚠ El archivo de datos está cerca del límite de GitHub (1MB). Avísame para archivar registros antiguos.');
+    if(!githubCfg.shas) githubCfg.shas = {};
+    for(const archivo of Object.keys(GITHUB_ARCHIVOS)){
+      const pedazo = partirDataPorArchivo(DATA, archivo);
+      const contenido = JSON.stringify(pedazo, null, 2);
+      const tamanoBytes = new Blob([contenido]).size;
+      if(tamanoBytes > 900000){
+        mostrarToast(`⚠ "${archivo}" está cerca del límite de GitHub (1MB). Avísame para revisarlo.`);
+      }
+      const body = {
+        message: mensaje || `Actualización ${new Date().toLocaleString()}`,
+        content: b64EncodeUnicode(contenido),
+        branch: githubCfg.branch
+      };
+      if(githubCfg.shas[archivo]) body.sha = githubCfg.shas[archivo];
+      const res = await fetch(`https://api.github.com/repos/${githubCfg.owner}/${githubCfg.repo}/contents/${encodeURIComponent(archivo)}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${githubCfg.token}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      if(res.status === 409 || res.status === 422){
+        mostrarToast('⚠ Un compañero guardó cambios al mismo tiempo. Se recargó la versión más reciente — revisa e intenta de nuevo.');
+        await recargarDesdeGithub();
+        return false;
+      }
+      if(!res.ok){
+        mostrarToast(`⚠ No se pudo guardar "${archivo}" en GitHub (código ${res.status}).`);
+        return false;
+      }
+      const json = await res.json();
+      githubCfg.shas[archivo] = json.content.sha;
     }
-    const body = {
-      message: mensaje || `Actualización ${new Date().toLocaleString()}`,
-      content: b64EncodeUnicode(contenido),
-      branch: githubCfg.branch
-    };
-    if(githubCfg.sha) body.sha = githubCfg.sha;
-    const res = await fetch(`https://api.github.com/repos/${githubCfg.owner}/${githubCfg.repo}/contents/${encodeURIComponent(githubCfg.path)}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${githubCfg.token}`,
-        'Accept': 'application/vnd.github+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-    if(res.status === 409 || res.status === 422){
-      mostrarToast('⚠ Un compañero guardó cambios al mismo tiempo. Se recargó la versión más reciente — revisa e intenta de nuevo.');
-      await recargarDesdeGithub();
-      return false;
-    }
-    if(!res.ok){
-      mostrarToast('⚠ No se pudo guardar en GitHub (código ' + res.status + ').');
-      return false;
-    }
-    const json = await res.json();
-    githubCfg.sha = json.content.sha;
+    lsSet(GITHUB_CFG_KEY, JSON.stringify(githubCfg));
     return true;
   }catch(err){
     mostrarToast('⚠ No se pudo guardar en GitHub. Revisa tu conexión a internet.');
@@ -2206,13 +2216,15 @@ async function escribirEnGithub(mensaje){
 async function recargarDesdeGithub(){
   if(!githubCfg) return false;
   try{
-    const res = await fetch(`https://api.github.com/repos/${githubCfg.owner}/${githubCfg.repo}/contents/${encodeURIComponent(githubCfg.path)}?ref=${encodeURIComponent(githubCfg.branch)}`, {
-      headers: { 'Authorization': `Bearer ${githubCfg.token}`, 'Accept': 'application/vnd.github+json' }
-    });
-    if(!res.ok) return false;
-    const json = await res.json();
-    DATA = JSON.parse(b64DecodeUnicode(json.content));
-    githubCfg.sha = json.sha;
+    if(!githubCfg.shas) githubCfg.shas = {};
+    const resultados = {};
+    for(const archivo of Object.keys(GITHUB_ARCHIVOS)){
+      const r = await fetchArchivoGithub(githubCfg.owner, githubCfg.repo, githubCfg.branch, archivo, githubCfg.token);
+      if(r.ok){ resultados[archivo] = r.contenido; githubCfg.shas[archivo] = r.sha; }
+      else if(r.notFound){ resultados[archivo] = null; githubCfg.shas[archivo] = null; }
+      else return false;
+    }
+    DATA = unirPedazosEnData(resultados);
     agregarEquiposFaltantes();
     renderDashboard();
     return true;
@@ -2904,7 +2916,6 @@ function exportarCalibracionesCSV(){
 /* ================= MODAL: PRESTAR ================= */
 function abrirModalPrestar(codigo){
   equipoActual = codigo;
-  fotoPrestarB64 = null;
   const e = DATA.equipos.find(x=>x.codigo===codigo);
   document.getElementById('prestarInfo').innerHTML = `<b>${e.codigo}</b> — ${e.tipo}<br>${e.marca} ${e.modelo} · Serial ${e.serial}`;
   document.getElementById('pSolicitante').value = '';
@@ -2912,7 +2923,6 @@ function abrirModalPrestar(codigo){
   document.getElementById('pFechaEsperada').value = '';
   document.querySelector('input[name=pEstado][value=Bueno]').checked = true;
   document.getElementById('pNotas').value = '';
-  document.getElementById('pFotoPreview').style.display = 'none';
   document.getElementById('modalPrestar').classList.add('active');
 }
 async function confirmarPrestamo(){
@@ -2929,11 +2939,9 @@ async function confirmarPrestamo(){
     fechaEsperada: document.getElementById('pFechaEsperada').value,
     estadoAlPrestar: estado,
     notasAlPrestar: document.getElementById('pNotas').value.trim(),
-    fotoAlPrestar: fotoPrestarB64,
     fechaDevolucion: null,
     estadoAlDevolver: null,
     notasAlDevolver: '',
-    fotoAlDevolver: null,
     status: 'activo'
   };
   DATA.prestamos.unshift(registro);
@@ -2949,7 +2957,6 @@ async function confirmarPrestamo(){
 /* ================= MODAL: DEVOLVER ================= */
 function abrirModalDevolver(codigo){
   equipoActual = codigo;
-  fotoDevolverB64 = null;
   const e = DATA.equipos.find(x=>x.codigo===codigo);
   const prestamo = DATA.prestamos.find(p=>p.codigo===codigo && p.status==='activo');
   document.getElementById('devolverInfo').innerHTML = prestamo ? `
@@ -2959,16 +2966,9 @@ function abrirModalDevolver(codigo){
     Estado al salir: <b>${prestamo.estadoAlPrestar}</b>${prestamo.notasAlPrestar ? ' — '+prestamo.notasAlPrestar : ''}
   ` : `<b>${e.codigo}</b> — ${e.tipo} (sin registro de préstamo activo)`;
 
-  const compare = document.getElementById('compareFotos');
-  if(prestamo && prestamo.fotoAlPrestar){
-    compare.innerHTML = `<div><img src="${prestamo.fotoAlPrestar}"><span>Foto al prestar</span></div><div><img id="dCompareRight" style="display:none"><span>Foto al devolver</span></div>`;
-  } else {
-    compare.innerHTML = '';
-  }
   document.getElementById('dFecha').value = hoy();
   document.querySelector('input[name=dEstado][value=Bueno]').checked = true;
   document.getElementById('dNotas').value = '';
-  document.getElementById('dFotoPreview').style.display = 'none';
   document.getElementById('modalDevolver').classList.add('active');
 }
 async function confirmarDevolucion(){
@@ -2979,7 +2979,6 @@ async function confirmarDevolucion(){
   prestamo.fechaDevolucion = fDev;
   prestamo.estadoAlDevolver = document.querySelector('input[name=dEstado]:checked').value;
   prestamo.notasAlDevolver = document.getElementById('dNotas').value.trim();
-  prestamo.fotoAlDevolver = fotoDevolverB64;
   prestamo.status = 'cerrado';
   const eq = DATA.equipos.find(x=>x.codigo===equipoActual);
   eq.estado = 'disponible';
