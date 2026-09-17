@@ -125,27 +125,28 @@
   .kpi-legend .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle;}
 
   /* ===== Layout ===== */
-  .shell{display:flex;min-height:calc(100vh - 92px);}
+  .shell{display:block;}
   nav.tabs{
-    width:190px;flex-shrink:0;background:var(--paper-2);
-    padding:20px 0;
-    border-right:1px solid var(--line);
+    width:100%;display:flex;flex-wrap:wrap;align-items:center;
+    background:var(--paper-2);
+    padding:6px 24px;
+    border-bottom:1px solid var(--line);
   }
   nav.tabs button{
     position:relative;
-    display:flex;align-items:center;
-    width:100%;text-align:left;
+    display:inline-flex;align-items:center;
     background:transparent;border:none;color:var(--ink);
-    padding:13px 46px 13px 22px;font-size:13.5px;cursor:pointer;
-    border-left:3px solid transparent;
+    padding:12px 16px;font-size:13px;cursor:pointer;white-space:nowrap;
+    border-bottom:3px solid transparent;
     font-family:'Plus Jakarta Sans',sans-serif;
     font-weight:700;
     letter-spacing:.1px;
     transition:background .15s, border-color .15s;
+    border-radius:6px 6px 0 0;
   }
   nav.tabs button .tab-label{display:flex;align-items:center;}
   nav.tabs button .count{
-    position:absolute;top:50%;right:14px;transform:translateY(-50%);
+    position:static;margin-left:6px;
     background:#fff;color:var(--ink-soft);
     padding:3px 10px;border-radius:12px;font-size:12.5px;font-weight:700;
     border:1px solid var(--line);
@@ -154,13 +155,13 @@
   }
   nav.tabs button.active{
     background:#fff;color:var(--amber);
-    border-left:3px solid var(--amber);
+    border-bottom:3px solid var(--amber);
     font-weight:800;
   }
   nav.tabs button.active .count{border-color:var(--amber);color:var(--amber);}
   nav.tabs button:hover:not(.active){background:rgba(0,0,0,0.05);}
 
-  main{flex:1;padding:28px 32px;overflow-x:auto;}
+  main{padding:28px 32px;overflow-x:auto;}
   .view{display:none;}
   .view.active{display:block;}
 
@@ -339,8 +340,8 @@
   .compare span{display:block;font-size:11px;color:var(--ink-soft);margin-top:4px;text-transform:uppercase;letter-spacing:.3px;}
 
   @media (min-width:761px) and (max-width:1080px){
-    nav.tabs{width:172px;}
-    nav.tabs button{padding:14px 18px;font-size:13.5px;}
+    nav.tabs{flex-wrap:nowrap;overflow-x:auto;}
+    nav.tabs button{padding:12px 14px;font-size:13px;}
     main{padding:22px;}
     .grid{grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:15px;}
     .btn{padding:12px 20px;}
@@ -351,10 +352,10 @@
     header{padding:18px 24px;}
   }
   @media (max-width:760px){
-    .shell{flex-direction:column;}
-    nav.tabs{width:100%;display:flex;overflow-x:auto;padding:8px;}
-    nav.tabs button{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;padding:10px 40px 10px 16px;}
-    nav.tabs button.active{border-left:none;border-bottom:3px solid var(--amber);}
+    nav.tabs{flex-wrap:nowrap;overflow-x:auto;padding:8px 12px;}
+    nav.tabs button{padding:10px 14px;font-size:12.5px;}
+    #globalSearchBar{flex-basis:100%;margin-left:0;order:99;margin-top:6px;padding:0 0 6px;}
+    #globalSearchBar .search-box{width:100%;}
     .row2, .compare{grid-template-columns:1fr;}
     main{padding:14px;}
     .calib-btn{width:32px;height:32px;font-size:15px;}
@@ -373,8 +374,7 @@
     .toast{left:16px;right:16px;bottom:16px;bottom:calc(16px + env(safe-area-inset-bottom));}
     header{padding-top:calc(14px + env(safe-area-inset-top));}
     .table-wrap{max-height:60vh;}
-    #globalSearchBar{padding:10px 16px;}
-    #globalSearchResults{left:16px;right:16px;max-width:none;}
+    #globalSearchResults{left:0;right:0;width:100%;max-width:none;}
     #campanaPanel{max-width:calc(100vw - 20px);}
     #fabScrollTop{bottom:calc(80px + env(safe-area-inset-bottom));right:16px;width:46px;height:46px;font-size:17px;}
   }
@@ -433,11 +433,6 @@
   </div>
 </header>
 
-<div id="globalSearchBar" style="background:var(--paper-2);padding:10px 32px;border-bottom:1px solid var(--line);position:relative;">
-  <input id="globalSearchInput" class="search-box" style="width:100%;max-width:520px;" placeholder="🔎 Buscar en toda la app... (equipo, placa, herramienta, proyecto)" oninput="buscarGlobal(this.value)">
-  <div id="globalSearchResults" style="display:none;position:absolute;top:100%;left:32px;right:32px;max-width:520px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,0.15);z-index:60;max-height:400px;overflow-y:auto;"></div>
-</div>
-
 <button id="fabScrollTop" onclick="volverArriba()" title="Volver arriba" style="display:none;position:fixed;bottom:90px;right:24px;width:52px;height:52px;border-radius:50%;background:var(--amber);color:#fff;border:none;font-size:20px;box-shadow:0 6px 16px rgba(0,0,0,0.3);cursor:pointer;z-index:90;align-items:center;justify-content:center;">↑</button>
 
 <div class="shell">
@@ -451,6 +446,10 @@
     <button class="tab-btn" data-view="celdas"><span class="tab-label"><span class="icon-emoji">🔌</span>Celdas</span></button>
     <button class="tab-btn active" data-view="kpis"><span class="tab-label"><span class="icon-emoji">📊</span>Indicadores</span></button>
     <button class="tab-btn admin-only" data-view="papelera"><span class="tab-label"><span class="icon-emoji">🗑️</span>Papelera</span></button>
+    <div id="globalSearchBar" style="position:relative;margin-left:auto;">
+      <input id="globalSearchInput" class="search-box" style="width:230px;" placeholder="🔎 Buscar en toda la app..." oninput="buscarGlobal(this.value)">
+      <div id="globalSearchResults" style="display:none;position:absolute;top:100%;right:0;width:320px;max-width:90vw;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,0.15);z-index:60;max-height:400px;overflow-y:auto;"></div>
+    </div>
   </nav>
 
   <main>
@@ -1050,6 +1049,10 @@
       <label>Motivo de la solicitud</label>
       <textarea id="shMotivo" placeholder="Ej: Cambio de botella en tableros de compensación"></textarea>
     </div>
+    <div class="field">
+      <label>Fecha de devolución (opcional, solo si ya la sabes)</label>
+      <input type="date" id="shFechaDevolucion">
+    </div>
 
     <div class="field">
       <label>Herramientas que salen</label>
@@ -1530,8 +1533,6 @@ let salidaHerrEditandoId = null;
 let proyectoBombeoEditandoId = null;
 let calibracionPdfB64 = null;
 let calibracionPdfNombre = '';
-let fotoPrestarB64 = null;
-let fotoDevolverB64 = null;
 
 /* ================= PERSISTENCIA EN ARCHIVO REAL ================= */
 const FS_SUPPORTED = ('showSaveFilePicker' in window) && ('showOpenFilePicker' in window);
@@ -2474,16 +2475,6 @@ function comprimirImagen(file, cb){
     img.src = e.target.result;
   };
   reader.readAsDataURL(file);
-}
-function handleFoto(evt, previewId){
-  const file = evt.target.files[0];
-  if(!file) return;
-  comprimirImagen(file, (b64)=>{
-    const isP = previewId === 'pFotoPreview';
-    if(isP) fotoPrestarB64 = b64; else fotoDevolverB64 = b64;
-    const img = document.getElementById(previewId);
-    img.src = b64; img.style.display = 'block';
-  });
 }
 function handleFotoVehiculo(evt, tipo){
   const file = evt.target.files[0];
@@ -3549,6 +3540,7 @@ function exportarCeldasCSV(){
 const PAPELERA_TIPOS = {
   prestamo: { campo:'prestamos', icono:'📋', etiqueta:(d)=>`Préstamo: ${d.codigo} → ${d.solicitante}` },
   calibracion: { campo:'calibraciones', icono:'🗓', etiqueta:(d)=>`Calibración: ${d.codigo} (${d.fechaCalibracion?fmtFecha(d.fechaCalibracion):''})` },
+  vehiculo: { campo:'vehiculos', icono:'🚗', etiqueta:(d)=>`Vehículo: ${d.placa}` },
   usoVehiculo: { campo:'usosVehiculo', icono:'🚗', etiqueta:(d)=>`Bitácora: ${d.placa} → ${d.nombre}` },
   herramienta: { campo:'herramientas', icono:'🧰', etiqueta:(d)=>`Herramienta: ${d.material}` },
   salidaHerramienta: { campo:'salidasHerramientas', icono:'🧾', etiqueta:(d)=>`Acta: ${d.numero}` },
@@ -3832,18 +3824,6 @@ function renderKPIs(){
 }
 
 let prestamoEditandoId = null;
-let fotoEditarPrestarB64 = null;
-let fotoEditarDevolverB64 = null;
-function handleFotoEditarPrestamo(evt, tipo){
-  const file = evt.target.files[0];
-  if(!file) return;
-  comprimirImagen(file, (b64)=>{
-    if(tipo === 'prestar') fotoEditarPrestarB64 = b64; else fotoEditarDevolverB64 = b64;
-    const previewId = tipo === 'prestar' ? 'peFotoPrestarPreview' : 'peFotoDevolverPreview';
-    const img = document.getElementById(previewId);
-    img.src = b64; img.style.display = 'block';
-  });
-}
 function abrirModalEditarPrestamo(id){
   try{
     const p = DATA.prestamos.find(x=>x.id===id);
@@ -3859,16 +3839,6 @@ function abrirModalEditarPrestamo(id){
     const rEstadoDevolver = document.querySelector(`input[name=peEstadoDevolver][value="${p.estadoAlDevolver||''}"]`);
     if(rEstadoDevolver) rEstadoDevolver.checked = true;
     document.getElementById('peNotasAlDevolver').value = p.notasAlDevolver || '';
-    fotoEditarPrestarB64 = p.fotoAlPrestar || null;
-    fotoEditarDevolverB64 = p.fotoAlDevolver || null;
-    const imgPrestar = document.getElementById('peFotoPrestarPreview');
-    document.getElementById('peFotoPrestarInput').value = '';
-    if(fotoEditarPrestarB64){ imgPrestar.src = fotoEditarPrestarB64; imgPrestar.style.display = 'block'; }
-    else { imgPrestar.src = ''; imgPrestar.style.display = 'none'; }
-    const imgDevolver = document.getElementById('peFotoDevolverPreview');
-    document.getElementById('peFotoDevolverInput').value = '';
-    if(fotoEditarDevolverB64){ imgDevolver.src = fotoEditarDevolverB64; imgDevolver.style.display = 'block'; }
-    else { imgDevolver.src = ''; imgDevolver.style.display = 'none'; }
     document.getElementById('modalEditarPrestamo').classList.add('active');
   }catch(err){
     mostrarToast('⚠ Error al abrir el préstamo: ' + err.message);
@@ -3891,8 +3861,6 @@ async function confirmarEditarPrestamo(){
     const rEstadoDevolver = document.querySelector('input[name=peEstadoDevolver]:checked');
     p.estadoAlDevolver = rEstadoDevolver ? (rEstadoDevolver.value || null) : p.estadoAlDevolver;
     p.notasAlDevolver = document.getElementById('peNotasAlDevolver').value.trim();
-    p.fotoAlPrestar = fotoEditarPrestarB64;
-    p.fotoAlDevolver = fotoEditarDevolverB64;
     await guardarDatos();
     if(!fileMode && !githubMode) marcarCambioSinRespaldo();
     cerrarModales();
@@ -3944,10 +3912,31 @@ function vehiculoCardHTML(v){
   return `
   <div class="tag ${out?'out':''}" onclick="abrirDesdeVehiculo('${v.placa}')">
     <div class="hole"></div>
+    <button class="admin-only" onclick="event.stopPropagation(); eliminarVehiculo('${v.placa}')" title="Eliminar vehículo" style="position:absolute;top:10px;right:10px;background:none;border:none;color:var(--alert);font-size:15px;cursor:pointer;z-index:2;">🗑</button>
     <div class="codigo mono">${v.placa}</div>
     <div class="tipo">${desc}</div>
     <span class="status-pill ${out?'out':'ok'}">${out?'En uso':'Disponible'}</span>
   </div>`;
+}
+async function eliminarVehiculo(placa){
+  try{
+    const idx = DATA.vehiculos.findIndex(v=>v.placa===placa);
+    if(idx===-1){ mostrarToast('⚠ No se encontró el vehículo.'); return; }
+    const v = DATA.vehiculos[idx];
+    if(v.estado === 'en_uso'){
+      mostrarToast('⚠ No puedes eliminar un vehículo que está en uso. Regístralo como devuelto primero.');
+      return;
+    }
+    if(!confirm(`¿Eliminar el vehículo "${v.placa}"? Su bitácora de historial se conserva. Se puede recuperar desde la Papelera dentro de 30 días.`)) return;
+    DATA.vehiculos.splice(idx,1);
+    moverAPapelera('vehiculo', v);
+    await guardarDatos();
+    if(!fileMode && !githubMode) marcarCambioSinRespaldo();
+    renderVehiculos();
+    mostrarToast('🗑 Vehículo movido a la papelera');
+  }catch(err){
+    mostrarToast('⚠ Error al eliminar: ' + err.message);
+  }
 }
 function actualizarContadorVehiculos(){
   const el = document.getElementById('cntVehEnUso');
@@ -4443,6 +4432,7 @@ function abrirModalSalidaHerramientas(){
   document.getElementById('shProyecto').value = '';
   document.getElementById('shDestino').value = '';
   document.getElementById('shMotivo').value = '';
+  document.getElementById('shFechaDevolucion').value = '';
   document.getElementById('shItemsWrap').innerHTML = '';
   salidaHerrItemsCounter = 0;
   agregarLineaSalidaHerramienta();
@@ -4464,6 +4454,7 @@ function abrirModalEditarSalidaHerramientas(id){
     document.getElementById('shProyecto').value = s.proyecto || '';
     document.getElementById('shDestino').value = s.destino || '';
     document.getElementById('shMotivo').value = s.motivo || '';
+    document.getElementById('shFechaDevolucion').value = s.fechaDevolucion || '';
     document.getElementById('shItemsWrap').innerHTML = '';
     salidaHerrItemsCounter = 0;
     (s.items && s.items.length ? s.items : [{cantidad:'1',material:'',observacion:''}]).forEach(it=>{
@@ -4484,6 +4475,7 @@ async function confirmarSalidaHerramientas(){
   const proyecto = document.getElementById('shProyecto').value.trim();
   const destino = document.getElementById('shDestino').value.trim();
   const motivo = document.getElementById('shMotivo').value.trim();
+  const fechaDevolucion = document.getElementById('shFechaDevolucion').value || null;
   if(!generadoPor){ mostrarToast('⚠ Escribe quién genera la salida.'); return; }
   if(!fecha){ mostrarToast('⚠ Selecciona la fecha.'); return; }
 
@@ -4516,13 +4508,14 @@ async function confirmarSalidaHerramientas(){
     registro = DATA.salidasHerramientas.find(x=>x.id===salidaHerrEditandoId);
     if(!registro){ mostrarToast('⚠ No se encontró el acta a editar.'); return; }
     Object.assign(registro, { departamento, fecha, generadoPor, proyecto, destino, motivo, items, fotos: salidaHerrFotos.slice() });
+    if(fechaDevolucion){ registro.fechaDevolucion = fechaDevolucion; registro.estatus = 'cerrado'; }
   } else {
     const numero = `SAL-GPS-${String(DATA.salidasHerramientas.length+1).padStart(3,'0')}-${new Date(fecha+'T00:00:00').getFullYear()}`;
     registro = {
       id: 'S' + Date.now(),
       numero, fecha, departamento, generadoPor, proyecto, destino, motivo, items,
       fotos: salidaHerrFotos.slice(),
-      fechaDevolucion: null, observacionesDevolucion: '', estatus: 'activo'
+      fechaDevolucion, observacionesDevolucion: '', estatus: fechaDevolucion ? 'cerrado' : 'activo'
     };
     DATA.salidasHerramientas.unshift(registro);
   }
@@ -4639,14 +4632,22 @@ function generarPDFActaSalida(salida){
     }
 
     let finalY = y2 + 16;
+    if(finalY > 250){ doc.addPage(); finalY = 30; }
+    doc.setFontSize(10);
+    doc.setFont(undefined,'bold');
+    doc.text('FECHA DE DEVOLUCIÓN:', 15, finalY);
+    doc.setFont(undefined,'normal');
+    doc.text(salida.fechaDevolucion ? fmtFecha(salida.fechaDevolucion) : '_________________________', 75, finalY);
+    finalY += 22;
+
     if(finalY > 265){ doc.addPage(); finalY = 30; }
     doc.setFontSize(9);
     doc.line(15, finalY, 70, finalY);
-    doc.text('Firma de Responsable', 15, finalY+5);
+    doc.text('Firma de Responsable', 42.5, finalY+5, {align:'center'});
     doc.line(85, finalY, 140, finalY);
-    doc.text('Firma de Líder de Calidad', 85, finalY+5);
+    doc.text('Firma de Líder de Calidad', 112.5, finalY+5, {align:'center'});
     doc.line(155, finalY, 195, finalY);
-    doc.text('Firma de Seguridad Física', 155, finalY+5);
+    doc.text('Firma de Seguridad Física', 175, finalY+5, {align:'center'});
 
     doc.save(`${salida.numero}.pdf`);
   }catch(err){
@@ -4757,7 +4758,7 @@ function renderHistorial(){
     <thead>
       <tr>
         <th>Equipo</th><th>Solicitante</th><th>Préstamo</th><th>Devolución</th>
-        <th>Estado salida</th><th>Estado retorno</th><th>Fotos</th><th>Estatus</th><th>Acciones</th>
+        <th>Estado salida</th><th>Estado retorno</th><th>Estatus</th><th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -4769,10 +4770,6 @@ function renderHistorial(){
           <td>${p.fechaDevolucion ? fmtFecha(p.fechaDevolucion) : '—'}</td>
           <td>${p.estadoAlPrestar || '—'}</td>
           <td>${p.estadoAlDevolver || '—'}</td>
-          <td><div class="thumbs">
-            ${p.fotoAlPrestar ? `<img src="${p.fotoAlPrestar}" onclick="verFoto('${p.fotoAlPrestar}')">` : ''}
-            ${p.fotoAlDevolver ? `<img src="${p.fotoAlDevolver}" onclick="verFoto('${p.fotoAlDevolver}')">` : ''}
-          </div></td>
           <td><span class="status-pill ${p.status==='activo'?'out':'ok'}">${p.status==='activo'?'Activo':'Cerrado'}</span></td>
           <td style="white-space:nowrap;">
             <button class="btn outline" style="padding:5px 10px;font-size:11px;" onclick="abrirModalEditarPrestamo('${p.id}')">✏ Editar</button>
@@ -4801,15 +4798,14 @@ function exportarHistorialCSV(){
   );
   if(items.length === 0){ mostrarToast('⚠ No hay historial para exportar.'); return; }
   const encontrarEquipo = (codigo)=> DATA.equipos.find(e=>e.codigo===codigo) || {};
-  const headers = ['Codigo','Tipo de equipo','Marca','Modelo','Solicitante','Fecha prestamo','Fecha devolucion esperada','Fecha devolucion real','Estado al prestar','Notas al prestar','Estado al devolver','Notas al devolver','Estatus','Tiene foto al prestar','Tiene foto al devolver'];
+  const headers = ['Codigo','Tipo de equipo','Marca','Modelo','Solicitante','Fecha prestamo','Fecha devolucion esperada','Fecha devolucion real','Estado al prestar','Notas al prestar','Estado al devolver','Notas al devolver','Estatus'];
   const filas = items.map(p=>{
     const eq = encontrarEquipo(p.codigo);
     return [
       p.codigo, eq.tipo||'', eq.marca||'', eq.modelo||'', p.solicitante,
       fmtFecha(p.fechaPrestamo), fmtFecha(p.fechaEsperada), p.fechaDevolucion?fmtFecha(p.fechaDevolucion):'',
       p.estadoAlPrestar||'', p.notasAlPrestar||'', p.estadoAlDevolver||'', p.notasAlDevolver||'',
-      p.status==='activo' ? 'Activo (sin devolver)' : 'Cerrado',
-      p.fotoAlPrestar ? 'Si' : 'No', p.fotoAlDevolver ? 'Si' : 'No'
+      p.status==='activo' ? 'Activo (sin devolver)' : 'Cerrado'
     ].map(csvEscape).join(';');
   });
   const csv = '\uFEFF' + headers.map(csvEscape).join(';') + '\n' + filas.join('\n');
