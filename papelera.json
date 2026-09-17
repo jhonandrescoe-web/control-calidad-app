@@ -1,3 +1,15 @@
 {
-  "papelera": []
+  "papelera": [
+    {
+      "id": "TR1789679831661moqje",
+      "tipo": "vehiculo",
+      "datos": {
+        "placa": "PFJ5372",
+        "marca": "",
+        "modelo": "",
+        "estado": "disponible"
+      },
+      "eliminadoEn": "2026-09-17T21:17:11.661Z"
+    }
+  ]
 }
