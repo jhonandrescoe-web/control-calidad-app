@@ -4,7 +4,7 @@
       "placa": "PFP4808",
       "marca": "",
       "modelo": "",
-      "estado": "disponible"
+      "estado": "en_uso"
     },
     {
       "placa": "PFJ5372",
@@ -14,6 +14,19 @@
     }
   ],
   "usosVehiculo": [
+    {
+      "id": "V1789651830569",
+      "placa": "PFP4808",
+      "nombre": "ANDRES CASTRO",
+      "departamento": "GESTION DE CALIDAD",
+      "fechaEntrega": "2026-09-17",
+      "observaciones": "NINGUNA",
+      "fotoSalida": null,
+      "fechaDevolucion": null,
+      "observacionesDevolucion": "",
+      "fotoEntrada": null,
+      "estatus": "activo"
+    },
     {
       "id": "V1789046048365",
       "placa": "PFP4808",
