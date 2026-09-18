@@ -82,7 +82,8 @@
   header .brand .brand-text{display:flex;flex-direction:column;justify-content:center;}
   header h1{font-size:19px;margin:0;font-weight:700;letter-spacing:.2px;line-height:1.25;}
   header p{margin:3px 0 0;font-size:12px;color:#E3C9C4;font-family:'IBM Plex Mono',monospace;letter-spacing:.6px;text-transform:uppercase;line-height:1;}
-  .header-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .header-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .header-divider{width:1px;height:22px;background:rgba(255,255,255,0.18);margin:0 4px;}
   .ghost-btn{
     background:transparent;border:1px solid #A85248;color:#EFDEDA;
     padding:8px 14px;border-radius:8px;font-size:12.5px;cursor:pointer;
@@ -367,6 +368,7 @@
     header{padding:14px 16px;}
     .header-actions{width:100%;}
     .header-actions .ghost-btn{flex:1;text-align:center;}
+    .header-divider{display:none;}
     .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
     .tag{padding:13px 13px 11px;}
     .panel{padding:18px;}
@@ -423,11 +425,13 @@
     <span class="ghost-btn" id="usuarioActivo" style="cursor:default;">👤</span>
     <span class="ghost-btn" id="fileStatus" style="cursor:pointer;" onclick="onClickEstadoConexion()" title="Toca para administrar la conexión"><img class="icon-sq" id="fileStatusIcon" src="" alt=""><span id="fileStatusText">Sin conectar</span></span>
     <span id="guardandoIndicador" style="display:none;font-size:11px;color:#E3C9C4;align-self:center;">💾 Guardando...</span>
+    <span class="header-divider"></span>
     <span style="position:relative;">
       <button class="ghost-btn" onclick="toggleCampana(event)">🔔 Avisos<span id="campanaBadge" style="display:none;margin-left:5px;background:var(--alert);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;font-weight:700;">0</span></button>
       <div id="campanaPanel" style="display:none;position:absolute;top:110%;right:0;width:320px;max-height:420px;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,0.2);z-index:70;"></div>
     </span>
     <button class="ghost-btn" onclick="cerrarSesion()">🔒 Cerrar sesión</button>
+    <span class="header-divider"></span>
     <button class="ghost-btn admin-only" onclick="abrirModalAvisos()"><img class="icon-sq" id="avisosBtnIcon" src="" alt="">Avisos por correo</button>
     <button class="ghost-btn" onclick="toggleModoOscuro()" id="darkModeBtn">🌙 Oscuro</button>
     <button class="ghost-btn" onclick="exportarBackup()"><img class="icon-sq" id="exportBtnIcon" src="" alt="">Exportar copia</button>
@@ -450,8 +454,8 @@
     <button class="tab-btn" data-view="celdas"><span class="tab-label"><span class="icon-emoji">🔌</span>Celdas</span></button>
     <button class="tab-btn active" data-view="kpis"><span class="tab-label"><span class="icon-emoji">📊</span>Indicadores</span></button>
     <button class="tab-btn admin-only" data-view="papelera"><span class="tab-label"><span class="icon-emoji">🗑️</span>Papelera</span></button>
-    <div id="globalSearchBar" style="position:relative;margin-left:auto;display:flex;align-items:center;">
-      <input id="globalSearchInput" class="search-box" style="width:230px;height:38px;padding:0 14px;" placeholder="🔎 Buscar en toda la app..." oninput="buscarGlobal(this.value)">
+    <div id="globalSearchBar" style="position:relative;margin-left:14px;display:flex;align-items:center;">
+      <input id="globalSearchInput" class="search-box" style="width:220px;height:38px;padding:0 14px;" placeholder="🔎 Buscar en toda la app..." oninput="buscarGlobal(this.value)">
       <div id="globalSearchResults" style="display:none;position:absolute;top:100%;right:0;width:320px;max-width:90vw;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,0.15);z-index:60;max-height:400px;overflow-y:auto;"></div>
     </div>
   </div>
@@ -680,7 +684,7 @@
         <div class="kpi-card"><div class="kpi-num" id="kpiTablerosTCP">0</div><div class="kpi-label">Tableros TCP probados</div></div>
       </div>
 
-      <div class="kpi-section-title">📈 Gráficas</div>
+      <div class="kpi-section-title">📈 Gráficas generales</div>
       <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
         <div class="kpi-card">
           <div class="kpi-label" style="margin-bottom:10px;">Estado de calibración (equipos)</div>
@@ -693,6 +697,22 @@
         <div class="kpi-card">
           <div class="kpi-label" style="margin-bottom:10px;">Actas de herramientas por mes (últimos 6 meses)</div>
           <canvas id="graficaActasMes" height="220"></canvas>
+        </div>
+      </div>
+
+      <div class="kpi-section-title">📈 Gráficas de Proyectos (Bombeo y Aireación)</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">Proyectos nuevos/actualizados por mes — Bombeo vs Aireación</div>
+          <canvas id="graficaProyectosMes" height="220"></canvas>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">% de revisiones FAT/SAT completadas</div>
+          <canvas id="graficaFatSat" height="220"></canvas>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">Estado de garantía — Proyectos Bombeo</div>
+          <canvas id="graficaGarantiaBombeo" height="220"></canvas>
         </div>
         <div class="kpi-card">
           <div class="kpi-label" style="margin-bottom:10px;">Tableros probados: TA vs TCP</div>
@@ -3691,7 +3711,7 @@ function esteMesKpi(fechaStr){
   return d.getFullYear()===hoy0.getFullYear() && d.getMonth()===hoy0.getMonth();
 }
 let chartsKPI = {};
-function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA, tablerosTCP){
+function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA, tablerosTCP, proyBombeo, proyAireacion){
   if(typeof Chart === 'undefined') return;
   try{
     Object.values(chartsKPI).forEach(c=>{ if(c) c.destroy(); });
@@ -3703,7 +3723,8 @@ function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA,
       warn: (estilos.getPropertyValue('--warn')||'#C98A1D').trim(),
       alert: (estilos.getPropertyValue('--alert')||'#C1622E').trim(),
       inkSoft: '#B3A199',
-      amber: (estilos.getPropertyValue('--amber')||'#B41E16').trim()
+      amber: (estilos.getPropertyValue('--amber')||'#B41E16').trim(),
+      navy: (estilos.getPropertyValue('--navy')||'#7A140D').trim()
     };
 
     const ctxCalib = document.getElementById('graficaCalibracion');
@@ -3742,6 +3763,70 @@ function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA,
         type: 'bar',
         data: { labels: nombresMeses, datasets: [{ label: 'Actas', data: actasPorMes, backgroundColor: col.ok, borderRadius: 4 }] },
         options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    }
+
+    /* --- Proyectos nuevos/actualizados por mes: Bombeo vs Aireación --- */
+    const bombeoPorMes = meses.map(m => (proyBombeo||[]).filter(p=>p.actualizadoEn && p.actualizadoEn.startsWith(m)).length);
+    const aireacionPorMes = meses.map(m => (proyAireacion||[]).filter(p=>p.actualizadoEn && p.actualizadoEn.startsWith(m)).length);
+    const ctxProyectosMes = document.getElementById('graficaProyectosMes');
+    if(ctxProyectosMes){
+      chartsKPI.proyectosMes = new Chart(ctxProyectosMes, {
+        type: 'bar',
+        data: {
+          labels: nombresMeses,
+          datasets: [
+            { label: 'Bombeo', data: bombeoPorMes, backgroundColor: col.navy, borderRadius: 4 },
+            { label: 'Aireación', data: aireacionPorMes, backgroundColor: col.warn, borderRadius: 4 }
+          ]
+        },
+        options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    }
+
+    /* --- % FAT/SAT completadas: Bombeo vs Aireación --- */
+    const pct = (arr, campo) => {
+      const total = (arr||[]).length || 1;
+      const conCampo = (arr||[]).filter(p=>p[campo]).length;
+      return Math.round((conCampo/total)*100);
+    };
+    const ctxFatSat = document.getElementById('graficaFatSat');
+    if(ctxFatSat){
+      chartsKPI.fatSat = new Chart(ctxFatSat, {
+        type: 'bar',
+        data: {
+          labels: ['Bombeo FAT','Bombeo SAT','Aireación FAT','Aireación SAT'],
+          datasets: [{
+            data: [pct(proyBombeo,'fechaFAT'), pct(proyBombeo,'fechaSAT'), pct(proyAireacion,'fechaFAT'), pct(proyAireacion,'fechaSAT')],
+            backgroundColor: [col.navy, col.navy, col.warn, col.warn],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx)=> ctx.parsed.y + '%' } } },
+          scales: { y: { beginAtZero: true, max: 100, ticks: { callback: (v)=> v+'%' } } }
+        }
+      });
+    }
+
+    /* --- Estado de garantía: Proyectos Bombeo --- */
+    let gVigente=0, gPorVencer=0, gVencida=0, gSinRegistro=0;
+    (proyBombeo||[]).forEach(p=>{
+      const s = estadoCalibracion(p.garantiaVencimiento);
+      if(s==='vigente') gVigente++;
+      else if(s==='por-vencer') gPorVencer++;
+      else if(s==='vencida') gVencida++;
+      else gSinRegistro++;
+    });
+    const ctxGarantia = document.getElementById('graficaGarantiaBombeo');
+    if(ctxGarantia){
+      chartsKPI.garantiaBombeo = new Chart(ctxGarantia, {
+        type: 'doughnut',
+        data: {
+          labels: ['Vigente','Por vencer','Vencida','Sin registro'],
+          datasets: [{ data: [gVigente, gPorVencer, gVencida, gSinRegistro], backgroundColor: [col.ok, col.warn, col.alert, col.inkSoft] }]
+        },
+        options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: true }
       });
     }
 
@@ -4055,7 +4140,7 @@ function renderKPIs(){
     document.getElementById('kpiTablerosTA').textContent = tablerosTA;
     document.getElementById('kpiTablerosTCP').textContent = tablerosTCP;
 
-    renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA, tablerosTCP);
+    renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA, tablerosTCP, proyBombeo, proyAireacion);
     const inputMes = document.getElementById('reporteMensualMes');
     if(inputMes && !inputMes.value) inputMes.value = new Date().toISOString().slice(0,7);
     const checkAuto = document.getElementById('reporteMensualAutoCheck');
