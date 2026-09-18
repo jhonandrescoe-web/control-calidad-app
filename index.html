@@ -357,8 +357,8 @@
   @media (max-width:760px){
     .tabs-inner{flex-wrap:nowrap;overflow-x:auto;padding:6px 12px;}
     nav.tabs button{padding:10px 14px;font-size:12.5px;}
-    #globalSearchBar{flex-basis:100%;margin-left:0;order:99;margin-top:6px;padding:0 0 6px;}
-    #globalSearchBar .search-box{width:100%;}
+    #globalSearchBar{margin-left:10px;flex-shrink:0;}
+    #globalSearchBar .search-box{width:170px;}
     .row2, .compare{grid-template-columns:1fr;}
     main{padding:14px;}
     .calib-btn{width:32px;height:32px;font-size:15px;}
@@ -377,7 +377,7 @@
     .toast{left:16px;right:16px;bottom:16px;bottom:calc(16px + env(safe-area-inset-bottom));}
     header{padding-top:calc(14px + env(safe-area-inset-top));}
     .table-wrap{max-height:60vh;}
-    #globalSearchResults{left:0;right:0;width:100%;max-width:none;}
+    #globalSearchResults{left:auto;right:0;width:260px;max-width:80vw;}
     #campanaPanel{max-width:calc(100vw - 20px);}
     #fabScrollTop{bottom:calc(80px + env(safe-area-inset-bottom));right:16px;width:46px;height:46px;font-size:17px;}
   }
@@ -678,6 +678,40 @@
         <div class="kpi-card"><div class="kpi-num" id="kpiAireSatPct">0%</div><div class="kpi-label">Con revisión SAT completada</div></div>
         <div class="kpi-card"><div class="kpi-num" id="kpiTablerosTA">0</div><div class="kpi-label">Tableros TA probados</div></div>
         <div class="kpi-card"><div class="kpi-num" id="kpiTablerosTCP">0</div><div class="kpi-label">Tableros TCP probados</div></div>
+      </div>
+
+      <div class="kpi-section-title">📈 Gráficas</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">Estado de calibración (equipos)</div>
+          <canvas id="graficaCalibracion" height="220"></canvas>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">Préstamos de equipos por mes (últimos 6 meses)</div>
+          <canvas id="graficaPrestamosMes" height="220"></canvas>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">Actas de herramientas por mes (últimos 6 meses)</div>
+          <canvas id="graficaActasMes" height="220"></canvas>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">Tableros probados: TA vs TCP</div>
+          <canvas id="graficaTableros" height="220"></canvas>
+        </div>
+      </div>
+
+      <div class="kpi-section-title admin-only">📧 Reporte mensual</div>
+      <div class="kpi-card admin-only">
+        <p class="info-line" style="text-align:left;margin-top:0;">Descarga o manda por correo un resumen de todo lo que se registró en un mes: préstamos, calibraciones, vehículos, actas de herramientas, proyectos y celdas.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;">
+          <input type="month" id="reporteMensualMes" style="padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:13px;">
+          <button class="btn outline" onclick="descargarReporteMensualPDF()">⬇ Descargar PDF</button>
+          <button class="btn amber" onclick="enviarReporteMensualEmail(false)">📧 Enviar por correo ahora</button>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;cursor:pointer;">
+          <input type="checkbox" id="reporteMensualAutoCheck" style="width:auto;" onchange="guardarPreferenciaReporteAuto()">
+          Mandarme este reporte automáticamente cada mes (al abrir la app por primera vez en el mes nuevo)
+        </label>
       </div>
     </section>
 
@@ -1383,6 +1417,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 /* ================= DATOS INICIALES ================= */
@@ -2570,6 +2605,10 @@ function renderDashboard(){
   renderHistorial();
   if(document.getElementById('kpiEquiposTotal')) renderKPIs();
   actualizarCampana();
+  if(!window._reporteMensualYaRevisado){
+    window._reporteMensualYaRevisado = true;
+    revisarReporteMensualAutomatico();
+  }
 }
 function tagCardHTML(e){
   const out = e.estado === 'prestado';
@@ -3651,6 +3690,198 @@ function esteMesKpi(fechaStr){
   const hoy0 = new Date();
   return d.getFullYear()===hoy0.getFullYear() && d.getMonth()===hoy0.getMonth();
 }
+let chartsKPI = {};
+function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA, tablerosTCP){
+  if(typeof Chart === 'undefined') return;
+  try{
+    Object.values(chartsKPI).forEach(c=>{ if(c) c.destroy(); });
+    chartsKPI = {};
+
+    const estilos = getComputedStyle(document.documentElement);
+    const col = {
+      ok: (estilos.getPropertyValue('--ok')||'#5C8F3B').trim(),
+      warn: (estilos.getPropertyValue('--warn')||'#C98A1D').trim(),
+      alert: (estilos.getPropertyValue('--alert')||'#C1622E').trim(),
+      inkSoft: '#B3A199',
+      amber: (estilos.getPropertyValue('--amber')||'#B41E16').trim()
+    };
+
+    const ctxCalib = document.getElementById('graficaCalibracion');
+    if(ctxCalib){
+      chartsKPI.calib = new Chart(ctxCalib, {
+        type: 'doughnut',
+        data: {
+          labels: ['Vigente','Por vencer','Vencida','Sin registro'],
+          datasets: [{ data: [vigente, porVencer, vencida, sinRegistro], backgroundColor: [col.ok, col.warn, col.alert, col.inkSoft] }]
+        },
+        options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: true }
+      });
+    }
+
+    const meses = [], nombresMeses = [];
+    const hoy0 = new Date();
+    for(let i=5; i>=0; i--){
+      const d = new Date(hoy0.getFullYear(), hoy0.getMonth()-i, 1);
+      meses.push(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);
+      nombresMeses.push(d.toLocaleDateString('es-ES', {month:'short', year:'2-digit'}));
+    }
+    const prestamosPorMes = meses.map(m => (DATA.prestamos||[]).filter(p=>p.fechaPrestamo && p.fechaPrestamo.startsWith(m)).length);
+    const ctxPrestamos = document.getElementById('graficaPrestamosMes');
+    if(ctxPrestamos){
+      chartsKPI.prestamos = new Chart(ctxPrestamos, {
+        type: 'bar',
+        data: { labels: nombresMeses, datasets: [{ label: 'Préstamos', data: prestamosPorMes, backgroundColor: col.amber, borderRadius: 4 }] },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    }
+
+    const actasPorMes = meses.map(m => (DATA.salidasHerramientas||[]).filter(s=>s.fecha && s.fecha.startsWith(m)).length);
+    const ctxActas = document.getElementById('graficaActasMes');
+    if(ctxActas){
+      chartsKPI.actas = new Chart(ctxActas, {
+        type: 'bar',
+        data: { labels: nombresMeses, datasets: [{ label: 'Actas', data: actasPorMes, backgroundColor: col.ok, borderRadius: 4 }] },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    }
+
+    const ctxTableros = document.getElementById('graficaTableros');
+    if(ctxTableros){
+      chartsKPI.tableros = new Chart(ctxTableros, {
+        type: 'bar',
+        data: { labels: ['TA','TCP'], datasets: [{ data: [tablerosTA, tablerosTCP], backgroundColor: [col.ok, col.warn], borderRadius: 4 }] },
+        options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    }
+  }catch(err){
+    mostrarToast('⚠ No se pudieron dibujar las gráficas: ' + err.message);
+  }
+}
+
+/* ================= REPORTE MENSUAL ================= */
+function calcularResumenMensual(anioMes){
+  const enElMes = (arr, campo) => (arr||[]).filter(x => x[campo] && x[campo].startsWith(anioMes));
+  const prestamosNuevos = enElMes(DATA.prestamos, 'fechaPrestamo');
+  const prestamosDevueltos = (DATA.prestamos||[]).filter(p => p.fechaDevolucion && p.fechaDevolucion.startsWith(anioMes));
+  const calibracionesNuevas = enElMes(DATA.calibraciones, 'fechaCalibracion');
+  const salidasVehiculo = enElMes(DATA.usosVehiculo, 'fechaEntrega');
+  const actasNuevas = enElMes(DATA.salidasHerramientas, 'fecha');
+  const proyectosBombeo = (DATA.proyectosBombeo||[]).filter(p => p.actualizadoEn && p.actualizadoEn.startsWith(anioMes));
+  const proyectosAireacion = (DATA.proyectosAireacion||[]).filter(p => p.actualizadoEn && p.actualizadoEn.startsWith(anioMes));
+  const tablerosTA = proyectosAireacion.filter(p=>p.tipoTablero==='TA').reduce((a,p)=>a+(parseInt(p.cantidadTableros,10)||0),0);
+  const tablerosTCP = proyectosAireacion.filter(p=>p.tipoTablero==='TCP').reduce((a,p)=>a+(parseInt(p.cantidadTableros,10)||0),0);
+  const celdasNuevas = (DATA.celdas||[]).filter(c => c.actualizadoEn && c.actualizadoEn.startsWith(anioMes));
+  return { prestamosNuevos, prestamosDevueltos, calibracionesNuevas, salidasVehiculo, actasNuevas, proyectosBombeo, proyectosAireacion, tablerosTA, tablerosTCP, celdasNuevas };
+}
+function nombreMesLargo(anioMes){
+  const [y,m] = anioMes.split('-');
+  const d = new Date(parseInt(y,10), parseInt(m,10)-1, 1);
+  return d.toLocaleDateString('es-ES', {month:'long', year:'numeric'});
+}
+function descargarReporteMensualPDF(){
+  if(typeof window.jspdf === 'undefined'){ mostrarToast('⚠ No se pudo cargar el generador de PDF (revisa tu conexión a internet).'); return; }
+  const anioMes = document.getElementById('reporteMensualMes').value;
+  if(!anioMes){ mostrarToast('⚠ Selecciona el mes.'); return; }
+  try{
+    const r = calcularResumenMensual(anioMes);
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit:'mm', format:'a4' });
+    const logoImg = document.querySelector('img.tagmark');
+    if(logoImg && logoImg.src){ try{ doc.addImage(logoImg.src, 'PNG', 15, 10, 18, 15.9); }catch(e){} }
+    doc.setFont(undefined,'bold'); doc.setFontSize(15);
+    doc.text('REPORTE MENSUAL', 105, 18, {align:'center'});
+    doc.setFont(undefined,'normal'); doc.setFontSize(10);
+    doc.text(nombreMesLargo(anioMes).toUpperCase(), 105, 25, {align:'center'});
+    doc.setDrawColor(180,30,22);
+    doc.line(15, 33, 195, 33);
+
+    let y = 44;
+    const fila = (etiqueta, valor)=>{
+      if(y > 275){ doc.addPage(); y = 20; }
+      doc.setFont(undefined,'normal'); doc.setFontSize(10.5);
+      doc.text(String(etiqueta), 18, y);
+      doc.setFont(undefined,'bold');
+      doc.text(String(valor), 190, y, {align:'right'});
+      y += 7;
+    };
+    fila('Préstamos de equipos nuevos', r.prestamosNuevos.length);
+    fila('Equipos devueltos', r.prestamosDevueltos.length);
+    fila('Calibraciones registradas', r.calibracionesNuevas.length);
+    fila('Salidas de vehículos', r.salidasVehiculo.length);
+    fila('Actas de herramientas generadas', r.actasNuevas.length);
+    fila('Proyectos de Bombeo nuevos/actualizados', r.proyectosBombeo.length);
+    fila('Proyectos de Aireación nuevos/actualizados', r.proyectosAireacion.length);
+    fila('Tableros TA probados', r.tablerosTA);
+    fila('Tableros TCP probados', r.tablerosTCP);
+    fila('Celdas nuevas/actualizadas', r.celdasNuevas.length);
+
+    doc.save(`reporte_${anioMes}.pdf`);
+    mostrarToast('⬇ Reporte mensual descargado');
+  }catch(err){
+    mostrarToast('⚠ No se pudo generar el reporte: ' + err.message);
+  }
+}
+async function enviarReporteMensualEmail(silencioso){
+  const av = DATA.avisos;
+  if(!av || !av.correo || !av.serviceId || !av.templateId || !av.publicKey){
+    if(!silencioso) mostrarToast('⚠ Primero completa la configuración de "Avisos por correo".');
+    return false;
+  }
+  if(!emailjsListo()){
+    if(!silencioso) mostrarToast('⚠ No se pudo cargar el servicio de correo (revisa tu conexión a internet).');
+    return false;
+  }
+  const anioMes = silencioso ? new Date().toISOString().slice(0,7) : (document.getElementById('reporteMensualMes').value || new Date().toISOString().slice(0,7));
+  try{
+    const r = calcularResumenMensual(anioMes);
+    const cuerpo = [
+      `Reporte mensual — ${nombreMesLargo(anioMes)}`,
+      '',
+      `Préstamos de equipos nuevos: ${r.prestamosNuevos.length}`,
+      `Equipos devueltos: ${r.prestamosDevueltos.length}`,
+      `Calibraciones registradas: ${r.calibracionesNuevas.length}`,
+      `Salidas de vehículos: ${r.salidasVehiculo.length}`,
+      `Actas de herramientas generadas: ${r.actasNuevas.length}`,
+      `Proyectos de Bombeo nuevos/actualizados: ${r.proyectosBombeo.length}`,
+      `Proyectos de Aireación nuevos/actualizados: ${r.proyectosAireacion.length}`,
+      `Tableros TA probados: ${r.tablerosTA}`,
+      `Tableros TCP probados: ${r.tablerosTCP}`,
+      `Celdas nuevas/actualizadas: ${r.celdasNuevas.length}`
+    ].join('\n');
+    emailjs.init(av.publicKey);
+    await emailjs.send(av.serviceId, av.templateId, {
+      to_email: av.correo,
+      subject: `Reporte mensual — ${nombreMesLargo(anioMes)}`,
+      message: cuerpo
+    });
+    if(!silencioso) mostrarToast('📧 Reporte mensual enviado a ' + av.correo);
+    return true;
+  }catch(err){
+    if(!silencioso) mostrarToast('⚠ No se pudo enviar el reporte. Revisa la configuración de EmailJS.');
+    return false;
+  }
+}
+async function guardarPreferenciaReporteAuto(){
+  if(!DATA.avisos) DATA.avisos = {};
+  DATA.avisos.reporteMensualAuto = document.getElementById('reporteMensualAutoCheck').checked;
+  await guardarDatos();
+  if(!fileMode && !githubMode) marcarCambioSinRespaldo();
+  mostrarToast(DATA.avisos.reporteMensualAuto ? '✔ Se te va a mandar el reporte automático cada mes' : 'Reporte automático desactivado');
+}
+async function revisarReporteMensualAutomatico(){
+  try{
+    if(!DATA.avisos || !DATA.avisos.reporteMensualAuto) return;
+    const mesActual = new Date().toISOString().slice(0,7);
+    if(DATA.avisos.ultimoReporteMensualEnviado === mesActual) return;
+    const enviado = await enviarReporteMensualEmail(true);
+    if(enviado){
+      DATA.avisos.ultimoReporteMensualEnviado = mesActual;
+      await guardarDatos();
+      if(!fileMode && !githubMode) marcarCambioSinRespaldo();
+      mostrarToast(`📧 Se envió solo el reporte mensual de ${nombreMesLargo(mesActual)}`);
+    }
+  }catch(e){ /* si falla, no interrumpimos el uso normal de la app */ }
+}
 function exportarKPIsPDF(){
   if(typeof window.jspdf === 'undefined'){ mostrarToast('⚠ No se pudo cargar el generador de PDF (revisa tu conexión a internet).'); return; }
   try{
@@ -3823,6 +4054,12 @@ function renderKPIs(){
     const tablerosTCP = proyAireacion.filter(p=>p.tipoTablero==='TCP').reduce((acc,p)=> acc + (parseInt(p.cantidadTableros,10)||0), 0);
     document.getElementById('kpiTablerosTA').textContent = tablerosTA;
     document.getElementById('kpiTablerosTCP').textContent = tablerosTCP;
+
+    renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA, tablerosTCP);
+    const inputMes = document.getElementById('reporteMensualMes');
+    if(inputMes && !inputMes.value) inputMes.value = new Date().toISOString().slice(0,7);
+    const checkAuto = document.getElementById('reporteMensualAutoCheck');
+    if(checkAuto) checkAuto.checked = !!(DATA.avisos && DATA.avisos.reporteMensualAuto);
   }catch(err){
     mostrarToast('⚠ Error al calcular indicadores: ' + err.message);
   }
