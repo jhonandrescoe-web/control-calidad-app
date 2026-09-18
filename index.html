@@ -684,35 +684,31 @@
         <div class="kpi-card"><div class="kpi-num" id="kpiTablerosTCP">0</div><div class="kpi-label">Tableros TCP probados</div></div>
       </div>
 
-      <div class="kpi-section-title">📈 Gráficas generales</div>
+      <div class="kpi-section-title">🔧 Gráficas — Proyectos (BOMBEO)</div>
       <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
         <div class="kpi-card">
-          <div class="kpi-label" style="margin-bottom:10px;">Estado de calibración (equipos)</div>
-          <canvas id="graficaCalibracion" height="220"></canvas>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label" style="margin-bottom:10px;">Préstamos de equipos por mes (últimos 6 meses)</div>
-          <canvas id="graficaPrestamosMes" height="220"></canvas>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label" style="margin-bottom:10px;">Actas de herramientas por mes (últimos 6 meses)</div>
-          <canvas id="graficaActasMes" height="220"></canvas>
-        </div>
-      </div>
-
-      <div class="kpi-section-title">📈 Gráficas de Proyectos (Bombeo y Aireación)</div>
-      <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
-        <div class="kpi-card">
-          <div class="kpi-label" style="margin-bottom:10px;">Proyectos nuevos/actualizados por mes — Bombeo vs Aireación</div>
-          <canvas id="graficaProyectosMes" height="220"></canvas>
+          <div class="kpi-label" style="margin-bottom:10px;">Proyectos nuevos/actualizados por mes (últimos 6 meses)</div>
+          <canvas id="graficaProyectosMesBombeo" height="220"></canvas>
         </div>
         <div class="kpi-card">
           <div class="kpi-label" style="margin-bottom:10px;">% de revisiones FAT/SAT completadas</div>
-          <canvas id="graficaFatSat" height="220"></canvas>
+          <canvas id="graficaFatSatBombeo" height="220"></canvas>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label" style="margin-bottom:10px;">Estado de garantía — Proyectos Bombeo</div>
+          <div class="kpi-label" style="margin-bottom:10px;">Estado de garantía</div>
           <canvas id="graficaGarantiaBombeo" height="220"></canvas>
+        </div>
+      </div>
+
+      <div class="kpi-section-title">💨 Gráficas — Proyectos (AIREACIÓN)</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">Proyectos nuevos/actualizados por mes (últimos 6 meses)</div>
+          <canvas id="graficaProyectosMesAireacion" height="220"></canvas>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label" style="margin-bottom:10px;">% de revisiones FAT/SAT completadas</div>
+          <canvas id="graficaFatSatAireacion" height="220"></canvas>
         </div>
         <div class="kpi-card">
           <div class="kpi-label" style="margin-bottom:10px;">Tableros probados: TA vs TCP</div>
@@ -3727,18 +3723,6 @@ function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA,
       navy: (estilos.getPropertyValue('--navy')||'#7A140D').trim()
     };
 
-    const ctxCalib = document.getElementById('graficaCalibracion');
-    if(ctxCalib){
-      chartsKPI.calib = new Chart(ctxCalib, {
-        type: 'doughnut',
-        data: {
-          labels: ['Vigente','Por vencer','Vencida','Sin registro'],
-          datasets: [{ data: [vigente, porVencer, vencida, sinRegistro], backgroundColor: [col.ok, col.warn, col.alert, col.inkSoft] }]
-        },
-        options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: true }
-      });
-    }
-
     const meses = [], nombresMeses = [];
     const hoy0 = new Date();
     for(let i=5; i>=0; i--){
@@ -3746,61 +3730,31 @@ function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA,
       meses.push(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);
       nombresMeses.push(d.toLocaleDateString('es-ES', {month:'short', year:'2-digit'}));
     }
-    const prestamosPorMes = meses.map(m => (DATA.prestamos||[]).filter(p=>p.fechaPrestamo && p.fechaPrestamo.startsWith(m)).length);
-    const ctxPrestamos = document.getElementById('graficaPrestamosMes');
-    if(ctxPrestamos){
-      chartsKPI.prestamos = new Chart(ctxPrestamos, {
-        type: 'bar',
-        data: { labels: nombresMeses, datasets: [{ label: 'Préstamos', data: prestamosPorMes, backgroundColor: col.amber, borderRadius: 4 }] },
-        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
-      });
-    }
-
-    const actasPorMes = meses.map(m => (DATA.salidasHerramientas||[]).filter(s=>s.fecha && s.fecha.startsWith(m)).length);
-    const ctxActas = document.getElementById('graficaActasMes');
-    if(ctxActas){
-      chartsKPI.actas = new Chart(ctxActas, {
-        type: 'bar',
-        data: { labels: nombresMeses, datasets: [{ label: 'Actas', data: actasPorMes, backgroundColor: col.ok, borderRadius: 4 }] },
-        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
-      });
-    }
-
-    /* --- Proyectos nuevos/actualizados por mes: Bombeo vs Aireación --- */
-    const bombeoPorMes = meses.map(m => (proyBombeo||[]).filter(p=>p.actualizadoEn && p.actualizadoEn.startsWith(m)).length);
-    const aireacionPorMes = meses.map(m => (proyAireacion||[]).filter(p=>p.actualizadoEn && p.actualizadoEn.startsWith(m)).length);
-    const ctxProyectosMes = document.getElementById('graficaProyectosMes');
-    if(ctxProyectosMes){
-      chartsKPI.proyectosMes = new Chart(ctxProyectosMes, {
-        type: 'bar',
-        data: {
-          labels: nombresMeses,
-          datasets: [
-            { label: 'Bombeo', data: bombeoPorMes, backgroundColor: col.navy, borderRadius: 4 },
-            { label: 'Aireación', data: aireacionPorMes, backgroundColor: col.warn, borderRadius: 4 }
-          ]
-        },
-        options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
-      });
-    }
-
-    /* --- % FAT/SAT completadas: Bombeo vs Aireación --- */
     const pct = (arr, campo) => {
       const total = (arr||[]).length || 1;
       const conCampo = (arr||[]).filter(p=>p[campo]).length;
       return Math.round((conCampo/total)*100);
     };
-    const ctxFatSat = document.getElementById('graficaFatSat');
-    if(ctxFatSat){
-      chartsKPI.fatSat = new Chart(ctxFatSat, {
+
+    /* --- BOMBEO: proyectos por mes --- */
+    const bombeoPorMes = meses.map(m => (proyBombeo||[]).filter(p=>p.actualizadoEn && p.actualizadoEn.startsWith(m)).length);
+    const ctxProyBombeo = document.getElementById('graficaProyectosMesBombeo');
+    if(ctxProyBombeo){
+      chartsKPI.proyectosMesBombeo = new Chart(ctxProyBombeo, {
+        type: 'bar',
+        data: { labels: nombresMeses, datasets: [{ label: 'Bombeo', data: bombeoPorMes, backgroundColor: col.navy, borderRadius: 4 }] },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    }
+
+    /* --- BOMBEO: % FAT/SAT --- */
+    const ctxFatSatBombeo = document.getElementById('graficaFatSatBombeo');
+    if(ctxFatSatBombeo){
+      chartsKPI.fatSatBombeo = new Chart(ctxFatSatBombeo, {
         type: 'bar',
         data: {
-          labels: ['Bombeo FAT','Bombeo SAT','Aireación FAT','Aireación SAT'],
-          datasets: [{
-            data: [pct(proyBombeo,'fechaFAT'), pct(proyBombeo,'fechaSAT'), pct(proyAireacion,'fechaFAT'), pct(proyAireacion,'fechaSAT')],
-            backgroundColor: [col.navy, col.navy, col.warn, col.warn],
-            borderRadius: 4
-          }]
+          labels: ['FAT','SAT'],
+          datasets: [{ data: [pct(proyBombeo,'fechaFAT'), pct(proyBombeo,'fechaSAT')], backgroundColor: col.navy, borderRadius: 4 }]
         },
         options: {
           plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx)=> ctx.parsed.y + '%' } } },
@@ -3809,7 +3763,7 @@ function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA,
       });
     }
 
-    /* --- Estado de garantía: Proyectos Bombeo --- */
+    /* --- BOMBEO: garantía --- */
     let gVigente=0, gPorVencer=0, gVencida=0, gSinRegistro=0;
     (proyBombeo||[]).forEach(p=>{
       const s = estadoCalibracion(p.garantiaVencimiento);
@@ -3830,6 +3784,34 @@ function renderGraficasKPI(vigente, porVencer, vencida, sinRegistro, tablerosTA,
       });
     }
 
+    /* --- AIREACION: proyectos por mes --- */
+    const aireacionPorMes = meses.map(m => (proyAireacion||[]).filter(p=>p.actualizadoEn && p.actualizadoEn.startsWith(m)).length);
+    const ctxProyAire = document.getElementById('graficaProyectosMesAireacion');
+    if(ctxProyAire){
+      chartsKPI.proyectosMesAireacion = new Chart(ctxProyAire, {
+        type: 'bar',
+        data: { labels: nombresMeses, datasets: [{ label: 'Aireación', data: aireacionPorMes, backgroundColor: col.warn, borderRadius: 4 }] },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+      });
+    }
+
+    /* --- AIREACION: % FAT/SAT --- */
+    const ctxFatSatAire = document.getElementById('graficaFatSatAireacion');
+    if(ctxFatSatAire){
+      chartsKPI.fatSatAireacion = new Chart(ctxFatSatAire, {
+        type: 'bar',
+        data: {
+          labels: ['FAT','SAT'],
+          datasets: [{ data: [pct(proyAireacion,'fechaFAT'), pct(proyAireacion,'fechaSAT')], backgroundColor: col.warn, borderRadius: 4 }]
+        },
+        options: {
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx)=> ctx.parsed.y + '%' } } },
+          scales: { y: { beginAtZero: true, max: 100, ticks: { callback: (v)=> v+'%' } } }
+        }
+      });
+    }
+
+    /* --- AIREACION: tableros TA vs TCP --- */
     const ctxTableros = document.getElementById('graficaTableros');
     if(ctxTableros){
       chartsKPI.tableros = new Chart(ctxTableros, {
