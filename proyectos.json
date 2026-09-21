@@ -1317,6 +1317,19 @@
       "tipoTablero": "TCP",
       "cantidadTableros": "25",
       "actualizadoEn": "2026-09-15T14:02:24.948Z"
+    },
+    {
+      "id": "PA1789998671958",
+      "contrato": "933,1",
+      "cliente": "IPSP",
+      "finca": "HOLANDA",
+      "proyecto": "COMPENSACION - HOLANDA",
+      "fechaFAT": "2026-09-18",
+      "fechaSAT": null,
+      "observaciones": "",
+      "tipoTablero": "TCP",
+      "cantidadTableros": "12",
+      "actualizadoEn": "2026-09-21T13:51:11.958Z"
     }
   ]
 }
