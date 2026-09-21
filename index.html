@@ -1104,10 +1104,6 @@
       <label>Motivo de la solicitud</label>
       <textarea id="shMotivo" placeholder="Ej: Cambio de botella en tableros de compensación"></textarea>
     </div>
-    <div class="field">
-      <label>Fecha de devolución (opcional, solo si ya la sabes)</label>
-      <input type="date" id="shFechaDevolucion">
-    </div>
 
     <div class="field">
       <label>Herramientas que salen</label>
@@ -4741,7 +4737,6 @@ function abrirModalSalidaHerramientas(){
   document.getElementById('shProyecto').value = '';
   document.getElementById('shDestino').value = '';
   document.getElementById('shMotivo').value = '';
-  document.getElementById('shFechaDevolucion').value = '';
   document.getElementById('shItemsWrap').innerHTML = '';
   salidaHerrItemsCounter = 0;
   agregarLineaSalidaHerramienta();
@@ -4763,7 +4758,6 @@ function abrirModalEditarSalidaHerramientas(id){
     document.getElementById('shProyecto').value = s.proyecto || '';
     document.getElementById('shDestino').value = s.destino || '';
     document.getElementById('shMotivo').value = s.motivo || '';
-    document.getElementById('shFechaDevolucion').value = s.fechaDevolucion || '';
     document.getElementById('shItemsWrap').innerHTML = '';
     salidaHerrItemsCounter = 0;
     (s.items && s.items.length ? s.items : [{cantidad:'1',material:'',observacion:''}]).forEach(it=>{
@@ -4784,7 +4778,6 @@ async function confirmarSalidaHerramientas(){
   const proyecto = document.getElementById('shProyecto').value.trim();
   const destino = document.getElementById('shDestino').value.trim();
   const motivo = document.getElementById('shMotivo').value.trim();
-  const fechaDevolucion = document.getElementById('shFechaDevolucion').value || null;
   if(!generadoPor){ mostrarToast('⚠ Escribe quién genera la salida.'); return; }
   if(!fecha){ mostrarToast('⚠ Selecciona la fecha.'); return; }
 
@@ -4817,14 +4810,13 @@ async function confirmarSalidaHerramientas(){
     registro = DATA.salidasHerramientas.find(x=>x.id===salidaHerrEditandoId);
     if(!registro){ mostrarToast('⚠ No se encontró el acta a editar.'); return; }
     Object.assign(registro, { departamento, fecha, generadoPor, proyecto, destino, motivo, items, fotos: salidaHerrFotos.slice() });
-    if(fechaDevolucion){ registro.fechaDevolucion = fechaDevolucion; registro.estatus = 'cerrado'; }
   } else {
     const numero = `SAL-GPS-${String(DATA.salidasHerramientas.length+1).padStart(3,'0')}-${new Date(fecha+'T00:00:00').getFullYear()}`;
     registro = {
       id: 'S' + Date.now(),
       numero, fecha, departamento, generadoPor, proyecto, destino, motivo, items,
       fotos: salidaHerrFotos.slice(),
-      fechaDevolucion, observacionesDevolucion: '', estatus: fechaDevolucion ? 'cerrado' : 'activo'
+      fechaDevolucion: null, observacionesDevolucion: '', estatus: 'activo'
     };
     DATA.salidasHerramientas.unshift(registro);
   }
