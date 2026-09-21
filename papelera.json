@@ -1,6 +1,24 @@
 {
   "papelera": [
     {
+      "id": "TR1789998548912o4oy2",
+      "tipo": "proyectoAireacion",
+      "datos": {
+        "id": "PA1789998514396",
+        "contrato": "933,1",
+        "cliente": "IPSP",
+        "finca": "NURACORP",
+        "proyecto": "COMPENSACION - NURACORP",
+        "fechaFAT": "2026-09-18",
+        "fechaSAT": null,
+        "observaciones": "",
+        "tipoTablero": "TCP",
+        "cantidadTableros": "35",
+        "actualizadoEn": "2026-09-21T13:48:34.396Z"
+      },
+      "eliminadoEn": "2026-09-21T13:49:08.913Z"
+    },
+    {
       "id": "TR1789739571653jtlr4",
       "tipo": "vehiculo",
       "datos": {
