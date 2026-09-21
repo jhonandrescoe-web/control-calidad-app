@@ -1317,19 +1317,6 @@
       "tipoTablero": "TCP",
       "cantidadTableros": "25",
       "actualizadoEn": "2026-09-15T14:02:24.948Z"
-    },
-    {
-      "id": "PA1789998514396",
-      "contrato": "933,1",
-      "cliente": "IPSP",
-      "finca": "NURACORP",
-      "proyecto": "COMPENSACION - NURACORP",
-      "fechaFAT": "2026-09-18",
-      "fechaSAT": null,
-      "observaciones": "",
-      "tipoTablero": "TCP",
-      "cantidadTableros": "35",
-      "actualizadoEn": "2026-09-21T13:48:34.396Z"
     }
   ]
 }
