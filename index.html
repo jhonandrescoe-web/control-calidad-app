@@ -133,8 +133,9 @@
   }
   .tabs-inner{
     max-width:1440px;margin:0 auto;
-    display:flex;flex-wrap:wrap;align-items:center;
+    display:flex;flex-wrap:nowrap;align-items:center;overflow-x:auto;
     padding:8px 32px;
+    scrollbar-width:thin;
   }
   nav.tabs button{
     position:relative;
@@ -4933,14 +4934,6 @@ function generarPDFActaSalida(salida){
     }
 
     let finalY = y2 + 16;
-    if(finalY > 250){ doc.addPage(); finalY = 30; }
-    doc.setFontSize(10);
-    doc.setFont(undefined,'bold');
-    doc.text('FECHA DE DEVOLUCIÓN:', 15, finalY);
-    doc.setFont(undefined,'normal');
-    doc.text(salida.fechaDevolucion ? fmtFecha(salida.fechaDevolucion) : '_________________________', 75, finalY);
-    finalY += 22;
-
     if(finalY > 265){ doc.addPage(); finalY = 30; }
     doc.setFontSize(9);
     doc.line(15, finalY, 70, finalY);
