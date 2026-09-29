@@ -16,10 +16,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#7A140D;
-    --navy-2:#5E0F09;
-    --paper:#F5F1EF;
-    --paper-2:#E9E1DD;
+    --navy:#3A3D42;
+    --navy-2:#2A2D31;
+    --paper:#FAFAFB;
+    --paper-2:#F1F2F4;
     --card:#FFFFFF;
     --amber:#B41E16;
     --amber-dark:#8C1811;
@@ -29,21 +29,21 @@
     --alert-bg:#F7E9DD;
     --warn:#C98A1D;
     --warn-dark:#9C6B13;
-    --ink:#2B1B17;
-    --ink-soft:#8A7772;
-    --line:#DFD5D0;
+    --ink:#2C2F33;
+    --ink-soft:#6B7280;
+    --line:#D9DCDF;
     --radius:10px;
     font-size:15px;
   }
   body.dark-mode{
-    --paper:#1B1512;
-    --paper-2:#251E19;
-    --card:#2B2320;
-    --ink:#EDE4DE;
-    --ink-soft:#B3A199;
-    --line:#453A34;
-    --ok-bg:#22321F;
-    --alert-bg:#3A2419;
+    --paper:#17191C;
+    --paper-2:#212427;
+    --card:#26292D;
+    --ink:#E8EAED;
+    --ink-soft:#9AA0A6;
+    --line:#383C40;
+    --ok-bg:#1F2E1B;
+    --alert-bg:#332018;
   }
   *{box-sizing:border-box;}
   body{
@@ -128,39 +128,39 @@
   /* ===== Layout ===== */
   .shell{display:block;}
   nav.tabs{
-    width:100%;background:var(--paper-2);
+    width:100%;background:var(--card);
     border-bottom:1px solid var(--line);
+    box-shadow:0 1px 3px rgba(0,0,0,0.04);
   }
   .tabs-inner{
     max-width:1440px;margin:0 auto;
     display:flex;flex-wrap:nowrap;align-items:center;overflow-x:auto;
-    padding:8px 32px;
+    padding:0 32px;
     scrollbar-width:thin;
   }
   nav.tabs button{
     position:relative;
     display:inline-flex;align-items:center;
-    background:transparent;border:none;color:var(--ink);
-    padding:0 16px;height:46px;font-size:13px;cursor:pointer;white-space:nowrap;
-    border-bottom:3px solid transparent;
+    background:transparent;border:none;color:var(--ink-soft);
+    padding:0 16px;height:52px;font-size:13px;cursor:pointer;white-space:nowrap;
+    border-bottom:2.5px solid transparent;
     font-family:'Plus Jakarta Sans',sans-serif;
-    font-weight:700;
+    font-weight:600;
     letter-spacing:.1px;
-    transition:background .15s, border-color .15s;
-    border-radius:6px 6px 0 0;
+    transition:color .15s, border-color .15s, background .15s;
   }
   nav.tabs button .tab-label{display:flex;align-items:center;}
   nav.tabs button .count{
     position:static;margin-left:6px;
-    background:#fff;color:var(--ink-soft);
+    background:var(--paper);color:var(--ink-soft);
     padding:3px 10px;border-radius:12px;font-size:12.5px;font-weight:700;
     border:1px solid var(--line);
     display:inline-flex;align-items:center;justify-content:center;
     min-width:26px;
   }
   nav.tabs button.active{
-    background:#fff;color:var(--amber);
-    border-bottom:3px solid var(--amber);
+    color:var(--amber);
+    border-bottom:2.5px solid var(--amber);
     font-weight:800;
   }
   nav.tabs button.active .count{border-color:var(--amber);color:var(--amber);}
@@ -393,7 +393,7 @@
 </head>
 <body>
 
-<div id="loginGate" style="position:fixed;inset:0;background:radial-gradient(circle at 30% 20%, #9C2318 0%, var(--navy) 45%, var(--navy-2) 100%);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;">
+<div id="loginGate" style="position:fixed;inset:0;background:linear-gradient(160deg, #3A3D42 0%, #22252A 100%);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;">
   <div style="background:#fff;border-radius:18px;padding:40px 36px;max-width:400px;width:100%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.08);">
     <div style="width:88px;height:88px;margin:0 auto 18px;border-radius:20px;background:linear-gradient(160deg,#fff,#F5F1EF);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(122,20,13,0.18);">
       <img id="loginLogoIcon" src="" alt="" style="width:60px;height:60px;object-fit:contain;">
@@ -5066,6 +5066,7 @@ function renderHistorial(){
           <td>${p.estadoAlDevolver || '—'}</td>
           <td><span class="status-pill ${p.status==='activo'?'out':'ok'}">${p.status==='activo'?'Activo':'Cerrado'}</span></td>
           <td style="white-space:nowrap;">
+            ${p.status==='activo' ? `<button class="btn amber" style="padding:5px 10px;font-size:11px;" onclick="abrirModalDevolver('${p.codigo}')">↩ Devolución</button>` : ''}
             <button class="btn outline" style="padding:5px 10px;font-size:11px;" onclick="abrirModalEditarPrestamo('${p.id}')">✏ Editar</button>
             <button class="btn outline" style="padding:5px 10px;font-size:11px;" onclick="eliminarPrestamo('${p.id}')">🗑 Eliminar</button>
           </td>
