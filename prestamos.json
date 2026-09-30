@@ -9,11 +9,11 @@
       "estadoAlPrestar": "Bueno",
       "notasAlPrestar": "NINGUNA",
       "fotoAlPrestar": null,
-      "fechaDevolucion": null,
-      "estadoAlDevolver": null,
+      "fechaDevolucion": "2026-09-30",
+      "estadoAlDevolver": "Bueno",
       "notasAlDevolver": "",
       "fotoAlDevolver": null,
-      "status": "activo"
+      "status": "cerrado"
     },
     {
       "id": "P1788958076118",
