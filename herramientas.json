@@ -410,9 +410,9 @@
         }
       ],
       "fotos": [],
-      "fechaDevolucion": null,
+      "fechaDevolucion": "2026-09-30",
       "observacionesDevolucion": "",
-      "estatus": "activo"
+      "estatus": "cerrado"
     },
     {
       "id": "S1787584623727",
