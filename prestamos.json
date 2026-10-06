@@ -1,19 +1,6 @@
 {
   "prestamos": [
     {
-      "id": "P1791295843031",
-      "codigo": "MEG-001",
-      "solicitante": "GUILLERMO VASQUEZ",
-      "fechaPrestamo": "2026-09-17",
-      "fechaEsperada": "",
-      "estadoAlPrestar": "Bueno",
-      "notasAlPrestar": "",
-      "fechaDevolucion": null,
-      "estadoAlDevolver": null,
-      "notasAlDevolver": "",
-      "status": "activo"
-    },
-    {
       "id": "P1791295840737",
       "codigo": "MEG-001",
       "solicitante": "GUILLERMO VASQUEZ",
