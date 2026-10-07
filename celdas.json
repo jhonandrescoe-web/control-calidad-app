@@ -219,6 +219,17 @@
       "garantiaVencimiento": "2027-08-19",
       "fotos": [],
       "actualizadoEn": "2026-08-21T16:37:05.461Z"
+    },
+    {
+      "id": "CEL1791398567404",
+      "proyecto": "NATURISA",
+      "finca": "EXPORTCAMBRIT",
+      "tipoCelda": "GAM-2",
+      "numeroSerie": "EA-2025-W45-SM6-0891",
+      "fechaRevision": "2026-10-07",
+      "garantiaVencimiento": "2027-10-07",
+      "fotos": [],
+      "actualizadoEn": "2026-10-07T18:42:47.404Z"
     }
   ]
 }
